@@ -1,3 +1,4 @@
+from capture import get_screen
 import sys
 
 from PyQt5.QtWidgets import *
@@ -24,7 +25,7 @@ class MainWindow(QMainWindow, form_class):
 
     def onStart(self):
         print("start Clicked")
-        self.edtCapturePath.setText('start')
+        get_screen('test.png')
 
 
 if __name__ == "__main__":
