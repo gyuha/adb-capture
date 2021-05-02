@@ -19,6 +19,8 @@ class MainWindow(QMainWindow, form_class):
 
     def onSelectPath(self):
         print("select path Clicked")
+        path = str(QFileDialog.getExistingDirectory(self, "Select Directory"))
+        self.edtCapturePath.setText(path)
 
     def onStop(self):
         print("stop Clicked")

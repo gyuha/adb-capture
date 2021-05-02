@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1368</width>
-    <height>963</height>
+    <width>1372</width>
+    <height>972</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -176,7 +176,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QListView" name="listView"/>
+       <widget class="QListView" name="lsFiles"/>
       </item>
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -194,7 +194,7 @@
          </spacer>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton">
+         <widget class="QPushButton" name="btnDeleteFile">
           <property name="text">
            <string>삭제</string>
           </property>
@@ -224,8 +224,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1368</width>
-     <height>26</height>
+     <width>1372</width>
+     <height>21</height>
     </rect>
    </property>
   </widget>
