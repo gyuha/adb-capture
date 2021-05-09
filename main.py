@@ -1,4 +1,4 @@
-from capture import get_screen
+from adb.capture import get_screen
 import sys
 
 from PyQt5.QtWidgets import *

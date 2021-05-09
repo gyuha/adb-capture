@@ -37,7 +37,7 @@ class AdbKey(Enum):
 
 
 def send_adb_key(keymap):
-    cmd = "adb  shell input " + keymap
+    cmd = "adb  shell input keyevent " + keymap
     try:
         subprocess.run(cmd, shell=True)
     except subprocess.CalledProcessError:
