@@ -3,7 +3,8 @@ from adb.capture import get_screen
 import sys
 
 from PyQt5.QtWidgets import *
-from PyQt5 import QtCore, uic
+from PyQt5 import uic
+from PyQt5.QtCore import pyqtSlot, Qt
 
 import mainUi
 
@@ -34,9 +35,20 @@ class MainWindow(QMainWindow, mainUi.Ui_MainWindow):
                 macro['action'])
             if index > -1:
                 actionCombo.setCurrentIndex(index)
+            actionCombo.setProperty('row', row)
+            actionCombo.currentTextChanged.connect(self.onActionComboChange)
             self.macroTable.setCellWidget(row, 0, actionCombo)
             self.macroTable.setItem(
                 row, 1, QTableWidgetItem(macro['value']))
+
+    @pyqtSlot(str)
+    def onActionComboChange(self, txt):
+        print(txt)
+        combo = self.sender()
+        row = combo.property('row')
+        print(row)
+        index = combo.currentIndex()
+        print(index)
 
     def setCapturePath(self, path):
         path = str(QFileDialog.getExistingDirectory(self, "Select Directory"))

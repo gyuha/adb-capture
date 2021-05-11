@@ -2,7 +2,8 @@
   "cSpell.words": [
     "DPAD",
     "Popen",
-    "fpdf"
+    "fpdf",
+    "pyqt"
   ],
   "python.pythonPath": "venv\\Scripts\\python.exe",
   "python.formatting.provider": "autopep8",
