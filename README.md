@@ -36,6 +36,9 @@ python --version
 > pip install -r requirements.txt
 ```
 
+# ui to py
+> pyuic5.exe -x .\mainUi.ui -o .\mainUi.py
+
 #### Linux
 
 ```bash
