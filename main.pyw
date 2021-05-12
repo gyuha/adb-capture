@@ -80,13 +80,13 @@ class MainWindow(QMainWindow, mainUi.Ui_MainWindow):
         text = self.macroTable.currentItem().text()
 
     def setCapturePath(self, path):
-        path = str(QFileDialog.getExistingDirectory(self, "Select Directory"))
+        path = str(QFileDialog.getExistingDirectory(self, "경로 선택"))
         self.edtCapturePath.setText(path)
         self.core.capturePath = path
 
     def clickSelectPath(self):
         print("select path Clicked")
-        path = str(QFileDialog.getExistingDirectory(self, "Select Directory"))
+        path = str(QFileDialog.getExistingDirectory(self, "경로 선택"))
         self.edtCapturePath.setText(path)
         self.core.capturePath = path
 
