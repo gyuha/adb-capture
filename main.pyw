@@ -34,6 +34,9 @@ class MainWindow(QMainWindow, mainUi.Ui_MainWindow):
     def setMacroTable(self):
         self.macroTable.setRowCount(0)
         self.macroTable.setRowCount(len(self.core.macro))
+        self.macroTable.setAlternatingRowColors(True)
+        self.macroTable.setColumnWidth(0, 100)
+        self.macroTable.horizontalHeader().setSectionResizeMode(1, QHeaderView.Stretch)
         for row, macro in enumerate(self.core.macro):
             actionCombo = QComboBox()
             actionCombo.addItems(macroActions)
@@ -44,8 +47,10 @@ class MainWindow(QMainWindow, mainUi.Ui_MainWindow):
             actionCombo.setProperty('row', row)
             actionCombo.currentTextChanged.connect(self.onActionComboChange)
             self.macroTable.setCellWidget(row, 0, actionCombo)
+            item = QTableWidgetItem(macro['value'])
+            item.setTextAlignment(Qt.AlignCenter)
             self.macroTable.setItem(
-                row, 1, QTableWidgetItem(macro['value']))
+                row, 1, item)
 
     @ pyqtSlot(str)
     def onActionComboChange(self, txt):
