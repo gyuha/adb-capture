@@ -22,11 +22,17 @@ class MainWindow(QMainWindow, mainUi.Ui_MainWindow):
 
         self.setMacroTable()
 
-        self.btnPathSelect.clicked.connect(self.onSelectPath)
-        self.btnStart.clicked.connect(self.onStart)
-        self.btnStop.clicked.connect(self.onStop)
+        self.lbConfigFilePath.setText(self.core.configPath)
+        self.btnConfigLoad.clicked.connect(self.clickConfigLoad)
+        self.btnConfigSave.clicked.connect(self.clickConfigSave)
+        self.btnPathSelect.clicked.connect(self.clickSelectPath)
+        self.btnStart.clicked.connect(self.clickStart)
+        self.btnStop.clicked.connect(self.clickStop)
+
+        # self.macroTable.cellChanged.connect(self.onMacroTableChanged)
 
     def setMacroTable(self):
+        self.macroTable.setRowCount(0)
         self.macroTable.setRowCount(len(self.core.macro))
         for row, macro in enumerate(self.core.macro):
             actionCombo = QComboBox()
@@ -41,30 +47,48 @@ class MainWindow(QMainWindow, mainUi.Ui_MainWindow):
             self.macroTable.setItem(
                 row, 1, QTableWidgetItem(macro['value']))
 
-    @pyqtSlot(str)
+    @ pyqtSlot(str)
     def onActionComboChange(self, txt):
-        print(txt)
+        # print(txt)
         combo = self.sender()
         row = combo.property('row')
         print(row)
         index = combo.currentIndex()
-        print(index)
+        self.core.macro[row]['action'] = txt
+        print(self.core.macro)
+
+    def clickConfigLoad(self):
+        path = QFileDialog.getOpenFileName(
+            self, "Select Config file", "", "JSON (*.json)")
+        if path[0]:
+            self.core.configPath = path[0]
+            self.lbConfigFilePath.setText(self.core.configPath)
+            self.core.loadMacro()
+            self.setMacroTable()
+
+    def clickConfigSave(self):
+        self.core.saveMacro()
+        QMessageBox.information(self, "Information", "저장 완료")
+
+    def onMacroTableChanged(self):
+        text = self.macroTable.currentItem().text()
+        print(text)
 
     def setCapturePath(self, path):
         path = str(QFileDialog.getExistingDirectory(self, "Select Directory"))
         self.edtCapturePath.setText(path)
         self.core.capturePath = path
 
-    def onSelectPath(self):
+    def clickSelectPath(self):
         print("select path Clicked")
         path = str(QFileDialog.getExistingDirectory(self, "Select Directory"))
         self.edtCapturePath.setText(path)
         self.core.capturePath = path
 
-    def onStop(self):
+    def clickStop(self):
         print("stop Clicked", self.core.capturePath)
 
-    def onStart(self):
+    def clickStart(self):
         print("start Clicked")
         get_screen('test.png')
 

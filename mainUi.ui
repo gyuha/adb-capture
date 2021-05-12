@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1368</width>
-    <height>830</height>
+    <width>1364</width>
+    <height>821</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -47,6 +47,108 @@
           </property>
          </widget>
         </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_2">
+          <property name="font">
+           <font>
+            <weight>50</weight>
+            <bold>false</bold>
+           </font>
+          </property>
+          <property name="text">
+           <string>실행</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <layout class="QVBoxLayout" name="verticalLayout_4" stretch="0,0,0">
+          <item>
+           <widget class="QTableWidget" name="macroTable">
+            <property name="font">
+             <font>
+              <weight>50</weight>
+              <bold>false</bold>
+             </font>
+            </property>
+            <property name="rowCount">
+             <number>0</number>
+            </property>
+            <attribute name="verticalHeaderVisible">
+             <bool>true</bool>
+            </attribute>
+            <attribute name="verticalHeaderHighlightSections">
+             <bool>true</bool>
+            </attribute>
+            <column>
+             <property name="text">
+              <string>명령어</string>
+             </property>
+            </column>
+            <column>
+             <property name="text">
+              <string>값</string>
+             </property>
+            </column>
+           </widget>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="0,1">
+            <item>
+             <widget class="QLabel" name="label_6">
+              <property name="font">
+               <font>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>파일명 :</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="lbConfigFilePath">
+              <property name="text">
+               <string>./default.json</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_4">
+            <item>
+             <widget class="QPushButton" name="btnConfigLoad">
+              <property name="text">
+               <string>읽기</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btnConfigSave">
+              <property name="text">
+               <string>저장</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="btnConfigAdd">
+              <property name="text">
+               <string>명령어 추가</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pushButton">
+              <property name="text">
+               <string>명령어 삭제</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
         <item row="0" column="1">
          <layout class="QGridLayout" name="gridLayout">
           <item row="0" column="0">
@@ -80,77 +182,6 @@
              <string>선택</string>
             </property>
            </widget>
-          </item>
-         </layout>
-        </item>
-        <item row="1" column="0">
-         <widget class="QLabel" name="label_2">
-          <property name="font">
-           <font>
-            <weight>50</weight>
-            <bold>false</bold>
-           </font>
-          </property>
-          <property name="text">
-           <string>실행</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1">
-         <layout class="QVBoxLayout" name="verticalLayout_4" stretch="0,0">
-          <item>
-           <widget class="QTableWidget" name="macroTable">
-            <property name="font">
-             <font>
-              <weight>50</weight>
-              <bold>false</bold>
-             </font>
-            </property>
-            <property name="rowCount">
-             <number>0</number>
-            </property>
-            <attribute name="verticalHeaderVisible">
-             <bool>true</bool>
-            </attribute>
-            <attribute name="verticalHeaderHighlightSections">
-             <bool>true</bool>
-            </attribute>
-            <column>
-             <property name="text">
-              <string>Action</string>
-             </property>
-            </column>
-            <column>
-             <property name="text">
-              <string>Value</string>
-             </property>
-            </column>
-           </widget>
-          </item>
-          <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_4">
-            <item>
-             <widget class="QCheckBox" name="checkBox">
-              <property name="text">
-               <string>편집</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="pushButton_2">
-              <property name="text">
-               <string>추가</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="pushButton">
-              <property name="text">
-               <string>삭제</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
           </item>
          </layout>
         </item>
@@ -321,8 +352,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1368</width>
-     <height>21</height>
+     <width>1364</width>
+     <height>26</height>
     </rect>
    </property>
   </widget>
