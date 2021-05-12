@@ -67,12 +67,17 @@ class MainWindow(QMainWindow, mainUi.Ui_MainWindow):
             self.setMacroTable()
 
     def clickConfigSave(self):
+        self.core.macro = []
+        for row in range(self.macroTable.rowCount()):
+            action = self.macroTable.cellWidget(row, 0).currentText()
+            value = self.macroTable.item(row, 1).text()
+            print(action, value)
+            self.core.macro.append({"action": action, "value": value})
         self.core.saveMacro()
         QMessageBox.information(self, "Information", "저장 완료")
 
     def onMacroTableChanged(self):
         text = self.macroTable.currentItem().text()
-        print(text)
 
     def setCapturePath(self, path):
         path = str(QFileDialog.getExistingDirectory(self, "Select Directory"))
