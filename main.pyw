@@ -31,6 +31,8 @@ class MainWindow(QMainWindow, mainUi.Ui_MainWindow):
         self.btnStart.clicked.connect(self.clickStart)
         self.btnStop.clicked.connect(self.clickStop)
 
+        self.selectRow = 0
+
         # self.macroTable.cellChanged.connect(self.onMacroTableChanged)
 
     def getMacroTableRow(self, row, action, value):
@@ -107,10 +109,16 @@ class MainWindow(QMainWindow, mainUi.Ui_MainWindow):
 
     def clickStop(self):
         print("stop Clicked", self.core.capturePath)
+        self.macroTable.setDisabled(False)
 
     def clickStart(self):
         print("start Clicked")
-        get_screen('test.png')
+        self.macroTable.setDisabled(True)
+        self.macroTable.selectRow(self.selectRow)
+        self.selectRow = self.selectRow + 1
+        if self.selectRow >= self.macroTable.rowCount():
+            self.selectRow = 0
+        # get_screen('test.png')
 
 
 if __name__ == "__main__":
