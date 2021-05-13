@@ -139,7 +139,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton">
+             <widget class="QPushButton" name="btnConfigRemove">
               <property name="text">
                <string>명령어 삭제</string>
               </property>

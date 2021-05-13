@@ -25,11 +25,27 @@ class MainWindow(QMainWindow, mainUi.Ui_MainWindow):
         self.lbConfigFilePath.setText(self.core.configPath)
         self.btnConfigLoad.clicked.connect(self.clickConfigLoad)
         self.btnConfigSave.clicked.connect(self.clickConfigSave)
+        self.btnConfigAdd.clicked.connect(self.clickConfigAdd)
+        self.btnConfigRemove.clicked.connect(self.clickConfigRemove)
         self.btnPathSelect.clicked.connect(self.clickSelectPath)
         self.btnStart.clicked.connect(self.clickStart)
         self.btnStop.clicked.connect(self.clickStop)
 
         # self.macroTable.cellChanged.connect(self.onMacroTableChanged)
+
+    def getMacroTableRow(self, row, action, value):
+        actionCombo = QComboBox()
+        actionCombo.addItems(macroActions)
+        index = actionCombo.findText(action)
+        if index > -1:
+            actionCombo.setCurrentIndex(index)
+        # actionCombo.currentTextChanged.connect(self.onActionComboChange)
+
+        self.macroTable.setCellWidget(
+            row, 0, actionCombo)
+        item = QTableWidgetItem(value)
+        # item.setTextAlignment(Qt.AlignCenter)
+        self.macroTable.setItem(row, 1, item)
 
     def setMacroTable(self):
         self.macroTable.setRowCount(0)
@@ -38,27 +54,13 @@ class MainWindow(QMainWindow, mainUi.Ui_MainWindow):
         self.macroTable.setColumnWidth(0, 100)
         self.macroTable.horizontalHeader().setSectionResizeMode(1, QHeaderView.Stretch)
         for row, macro in enumerate(self.core.macro):
-            actionCombo = QComboBox()
-            actionCombo.addItems(macroActions)
-            index = actionCombo.findText(
-                macro['action'])
-            if index > -1:
-                actionCombo.setCurrentIndex(index)
-            actionCombo.setProperty('row', row)
-            actionCombo.currentTextChanged.connect(self.onActionComboChange)
-            self.macroTable.setCellWidget(row, 0, actionCombo)
-            item = QTableWidgetItem(macro['value'])
-            item.setTextAlignment(Qt.AlignCenter)
-            self.macroTable.setItem(
-                row, 1, item)
+            self.getMacroTableRow(row, macro['action'], macro['value'])
 
     @ pyqtSlot(str)
     def onActionComboChange(self, txt):
         # print(txt)
         combo = self.sender()
-        row = combo.property('row')
-        print(row)
-        index = combo.currentIndex()
+        row = combo.currentRow()
         self.core.macro[row]['action'] = txt
         print(self.core.macro)
 
@@ -76,10 +78,18 @@ class MainWindow(QMainWindow, mainUi.Ui_MainWindow):
         for row in range(self.macroTable.rowCount()):
             action = self.macroTable.cellWidget(row, 0).currentText()
             value = self.macroTable.item(row, 1).text()
-            print(action, value)
             self.core.macro.append({"action": action, "value": value})
         self.core.saveMacro()
         QMessageBox.information(self, "Information", "저장 완료")
+
+    def clickConfigAdd(self):
+        row = self.macroTable.currentRow()
+        self.macroTable.insertRow(row+1)
+        self.getMacroTableRow(row+1, '', '')
+
+    def clickConfigRemove(self):
+        row = self.macroTable.currentRow()
+        self.macroTable.removeRow(row)
 
     def onMacroTableChanged(self):
         text = self.macroTable.currentItem().text()
