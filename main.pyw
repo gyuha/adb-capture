@@ -40,6 +40,8 @@ class MainWindow(QMainWindow, mainUi.Ui_MainWindow):
         self.btnStart.clicked.connect(self.clickStart)
         self.btnStop.clicked.connect(self.clickStop)
 
+        self.lsFiles.itemSelectionChanged.connect(self.onCaptureFileChanged)
+
         self.selectRow = 0
 
         self.setLsFiles("C:\\workspace\\adb-capture")
@@ -74,7 +76,7 @@ class MainWindow(QMainWindow, mainUi.Ui_MainWindow):
         for row, macro in enumerate(self.core.macro):
             self.getMacroTableRow(row, macro['action'], macro['value'])
 
-    @ pyqtSlot(str)
+    @pyqtSlot(str)
     def onActionComboChange(self, txt):
         # print(txt)
         combo = self.sender()
@@ -185,6 +187,20 @@ class MainWindow(QMainWindow, mainUi.Ui_MainWindow):
         item = QListWidgetItem(os.path.basename(path), self.lsFiles)
         item.setStatusTip(path)
         item.setIcon(icon)
+        # item.clicked.connect()
+
+    def onCaptureFileChanged(self):
+        item = self.lsFiles.selectedItems()
+        if len(item) > 0:
+            path = os.path.join(self.core.capturePath, item[0].text())
+            self.previewDisplay(path)
+
+    def previewDisplay(self, path):
+        pix = QPixmap()
+        pix.load(path)
+        pix = pix.scaledToWidth(self.lbPreview.width(),
+                                Qt.SmoothTransformation)
+        self.lbPreview.setPixmap(pix)
 
 
 if __name__ == "__main__":

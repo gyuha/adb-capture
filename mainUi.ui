@@ -14,7 +14,7 @@
    <string>ADB Caputre automate</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="2,0,2,2">
+   <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="2,0,1,2">
     <item>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
@@ -305,15 +305,18 @@
      </layout>
     </item>
     <item>
-     <widget class="QLabel" name="label_3">
+     <widget class="QLabel" name="lbPreview">
       <property name="font">
        <font>
         <weight>50</weight>
         <bold>false</bold>
        </font>
       </property>
+      <property name="autoFillBackground">
+       <bool>true</bool>
+      </property>
       <property name="text">
-       <string>TextLabel</string>
+       <string/>
       </property>
      </widget>
     </item>
