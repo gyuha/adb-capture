@@ -1,10 +1,11 @@
+from PyQt5 import QtCore
 from core import mainCore, macroActions
 from adb.capture import get_screen
 import sys
 
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
-from PyQt5.QtCore import pyqtSlot, Qt
+from PyQt5.QtCore import QDir, pyqtSlot, Qt
 
 import mainUi
 
@@ -22,9 +23,12 @@ class MainWindow(QMainWindow, mainUi.Ui_MainWindow):
 
         self.setMacroTable()
 
+        self.actionOpen.triggered.connect(self.clickConfigLoad)
+        self.actionSave.triggered.connect(self.clickConfigSave)
+        self.actionSaveAs.triggered.connect(self.clickConfigSaveAs)
+
         self.lbConfigFilePath.setText(self.core.configPath)
-        self.btnConfigLoad.clicked.connect(self.clickConfigLoad)
-        self.btnConfigSave.clicked.connect(self.clickConfigSave)
+        self.btnConfigInsert.clicked.connect(self.clickConfigInsert)
         self.btnConfigAdd.clicked.connect(self.clickConfigAdd)
         self.btnConfigRemove.clicked.connect(self.clickConfigRemove)
         self.btnPathSelect.clicked.connect(self.clickSelectPath)
@@ -33,7 +37,20 @@ class MainWindow(QMainWindow, mainUi.Ui_MainWindow):
 
         self.selectRow = 0
 
+        # self.setLsFiles(self.core.capturePath)
+        self.setLsFiles("C:\\workspace\\adb-capture")
+
+        # print(file.current_dir_path())
+
+        # self.lsFiles.setRootIndex(self.core.capturePath)
+
         # self.macroTable.cellChanged.connect(self.onMacroTableChanged)
+
+    def setLsFiles(self, path):
+        self.model = QFileSystemModel()
+        # self.model.setRootPath(path)
+        # self.index_root = self.model.index(self.model.rootPath())
+        # self.lsFiles.setRootIndex(self.index_root)
 
     def getMacroTableRow(self, row, action, value):
         actionCombo = QComboBox()
@@ -83,6 +100,29 @@ class MainWindow(QMainWindow, mainUi.Ui_MainWindow):
             self.core.macro.append({"action": action, "value": value})
         self.core.saveMacro()
         QMessageBox.information(self, "Information", "저장 완료")
+
+    def clickConfigSaveAs(self):
+        path = QFileDialog.getSaveFileName(
+            self, 'Save File', "", "JSON (*.json)")
+
+        self.core.configPath = path[0]
+        self.core.macro = []
+
+        for row in range(self.macroTable.rowCount()):
+            action = self.macroTable.cellWidget(row, 0).currentText()
+            value = self.macroTable.item(row, 1).text()
+            self.core.macro.append({"action": action, "value": value})
+        self.core.saveMacro()
+
+        self.lbConfigFilePath.setText(self.core.configPath)
+        self.core.loadMacro()
+        self.setMacroTable()
+        QMessageBox.information(self, "Information", "저장 완료")
+
+    def clickConfigInsert(self):
+        row = self.macroTable.currentRow()
+        self.macroTable.insertRow(row)
+        self.getMacroTableRow(row, '', '')
 
     def clickConfigAdd(self):
         row = self.macroTable.currentRow()

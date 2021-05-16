@@ -118,16 +118,9 @@
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_4">
             <item>
-             <widget class="QPushButton" name="btnConfigLoad">
+             <widget class="QPushButton" name="btnConfigInsert">
               <property name="text">
-               <string>읽기</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="btnConfigSave">
-              <property name="text">
-               <string>저장</string>
+               <string>명령어 삽입</string>
               </property>
              </widget>
             </item>
@@ -255,7 +248,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QTableWidget" name="lsFiles">
+       <widget class="QListWidget" name="lsFiles">
         <property name="frameShape">
          <enum>QFrame::Box</enum>
         </property>
@@ -268,42 +261,6 @@
         <property name="verticalScrollMode">
          <enum>QAbstractItemView::ScrollPerItem</enum>
         </property>
-        <property name="showGrid">
-         <bool>true</bool>
-        </property>
-        <property name="gridStyle">
-         <enum>Qt::SolidLine</enum>
-        </property>
-        <property name="sortingEnabled">
-         <bool>false</bool>
-        </property>
-        <property name="wordWrap">
-         <bool>true</bool>
-        </property>
-        <property name="cornerButtonEnabled">
-         <bool>true</bool>
-        </property>
-        <property name="rowCount">
-         <number>0</number>
-        </property>
-        <property name="columnCount">
-         <number>2</number>
-        </property>
-        <attribute name="horizontalHeaderVisible">
-         <bool>true</bool>
-        </attribute>
-        <attribute name="verticalHeaderVisible">
-         <bool>false</bool>
-        </attribute>
-        <attribute name="verticalHeaderHighlightSections">
-         <bool>true</bool>
-        </attribute>
-        <column>
-         <property name="text">
-          <string>File Name</string>
-         </property>
-        </column>
-        <column/>
        </widget>
       </item>
       <item>
@@ -356,8 +313,39 @@
      <height>26</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>파일</string>
+    </property>
+    <addaction name="actionOpen"/>
+    <addaction name="actionSave"/>
+    <addaction name="actionSaveAs"/>
+    <addaction name="separator"/>
+    <addaction name="actionClose"/>
+   </widget>
+   <addaction name="menu"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionOpen">
+   <property name="text">
+    <string>열기(&amp;o)</string>
+   </property>
+  </action>
+  <action name="actionSave">
+   <property name="text">
+    <string>저장(&amp;s)</string>
+   </property>
+  </action>
+  <action name="actionSaveAs">
+   <property name="text">
+    <string>다른 이름으로 저장</string>
+   </property>
+  </action>
+  <action name="actionClose">
+   <property name="text">
+    <string>Close</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>
