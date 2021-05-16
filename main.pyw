@@ -1,7 +1,12 @@
+import io
+from PIL import Image
+from PIL.ImageQt import ImageQt
 from PyQt5 import QtCore
+from PyQt5.QtGui import QIcon, QImage, QPixmap
 from core import mainCore, macroActions
 from adb.capture import get_screen
 import sys
+import os
 
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
@@ -37,14 +42,8 @@ class MainWindow(QMainWindow, mainUi.Ui_MainWindow):
 
         self.selectRow = 0
 
-        # self.setLsFiles(self.core.capturePath)
         self.setLsFiles("C:\\workspace\\adb-capture")
-
-        # print(file.current_dir_path())
-
-        # self.lsFiles.setRootIndex(self.core.capturePath)
-
-        # self.macroTable.cellChanged.connect(self.onMacroTableChanged)
+        self.loadCaptureFiles()
 
     def setLsFiles(self, path):
         self.model = QFileSystemModel()
@@ -159,6 +158,32 @@ class MainWindow(QMainWindow, mainUi.Ui_MainWindow):
         if self.selectRow >= self.macroTable.rowCount():
             self.selectRow = 0
         # get_screen('test.png')
+
+    def pil2pixmap(self, image):
+        bytes_img = io.BytesIO()
+        image.save(bytes_img, format='JPEG')
+
+        qimg = QImage()
+        qimg.loadFromData(bytes_img.getvalue())
+
+        return QPixmap.fromImage(qimg)
+
+    def loadCaptureFiles(self):
+        files = os.listdir(self.core.capturePath)
+        for f1 in files:
+            path = os.path.join(self.core.capturePath, f1)
+            # or not (path.endswith(".jpg") and path.endswith(".png")):
+            if os.path.isdir(path) or not (path.endswith(".jpg") or path.endswith(".png")):
+                continue
+            picture = Image.open(path)
+            picture.thumbnail((80, 120), Image.ANTIALIAS)
+            # icon = QIcon(QPixmap.fromImage(ImageQt(picture)))
+            icon = QIcon(self.pil2pixmap(picture))
+            item = QListWidgetItem(os.path.basename(
+                path)[:20] + "...", self.lsFiles)
+            item.setStatusTip(path)
+            item.setIcon(icon)
+            # self.lsFiles.addItem(item)
 
 
 if __name__ == "__main__":

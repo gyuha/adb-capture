@@ -6,15 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1364</width>
-    <height>821</height>
+    <width>1328</width>
+    <height>817</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>ADB Caputre automate</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="2,0,1,2">
+   <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="2,0,2,2">
     <item>
      <layout class="QVBoxLayout" name="verticalLayout">
       <item>
@@ -255,11 +255,26 @@
         <property name="frameShadow">
          <enum>QFrame::Sunken</enum>
         </property>
+        <property name="iconSize">
+         <size>
+          <width>80</width>
+          <height>120</height>
+         </size>
+        </property>
         <property name="textElideMode">
          <enum>Qt::ElideLeft</enum>
         </property>
         <property name="verticalScrollMode">
          <enum>QAbstractItemView::ScrollPerItem</enum>
+        </property>
+        <property name="gridSize">
+         <size>
+          <width>90</width>
+          <height>140</height>
+         </size>
+        </property>
+        <property name="viewMode">
+         <enum>QListView::IconMode</enum>
         </property>
        </widget>
       </item>
@@ -309,7 +324,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1364</width>
+     <width>1328</width>
      <height>26</height>
     </rect>
    </property>
