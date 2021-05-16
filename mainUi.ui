@@ -269,12 +269,12 @@
         </property>
         <property name="gridSize">
          <size>
-          <width>90</width>
-          <height>140</height>
+          <width>0</width>
+          <height>120</height>
          </size>
         </property>
         <property name="viewMode">
-         <enum>QListView::IconMode</enum>
+         <enum>QListView::ListMode</enum>
         </property>
        </widget>
       </item>

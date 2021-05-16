@@ -170,20 +170,21 @@ class MainWindow(QMainWindow, mainUi.Ui_MainWindow):
 
     def loadCaptureFiles(self):
         files = os.listdir(self.core.capturePath)
-        for f1 in files:
-            path = os.path.join(self.core.capturePath, f1)
-            # or not (path.endswith(".jpg") and path.endswith(".png")):
-            if os.path.isdir(path) or not (path.endswith(".jpg") or path.endswith(".png")):
-                continue
-            picture = Image.open(path)
-            picture.thumbnail((80, 120), Image.ANTIALIAS)
-            # icon = QIcon(QPixmap.fromImage(ImageQt(picture)))
-            icon = QIcon(self.pil2pixmap(picture))
-            item = QListWidgetItem(os.path.basename(
-                path)[:20] + "...", self.lsFiles)
-            item.setStatusTip(path)
-            item.setIcon(icon)
-            # self.lsFiles.addItem(item)
+        for file in files:
+            self.addCaptureFile(file)
+
+    def addCaptureFile(self, file):
+        path = os.path.join(self.core.capturePath, file)
+        # or not (path.endswith(".jpg") and path.endswith(".png")):
+        if os.path.isdir(path) or not (path.endswith(".jpg") or path.endswith(".png")):
+            return
+        picture = Image.open(path)
+        picture.thumbnail((80, 120), Image.ANTIALIAS)
+        # icon = QIcon(QPixmap.fromImage(ImageQt(picture)))
+        icon = QIcon(self.pil2pixmap(picture))
+        item = QListWidgetItem(os.path.basename(path), self.lsFiles)
+        item.setStatusTip(path)
+        item.setIcon(icon)
 
 
 if __name__ == "__main__":
