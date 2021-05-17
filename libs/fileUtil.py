@@ -19,6 +19,14 @@ def dir_inner(cur_path, dir):
         return cur_path
 
 
+def removePathFiles(files):
+    for f in files:
+        try:
+            os.remove(f)
+        except OSError as e:
+            print("Error: %s : %s" % (f, e.strerror))
+
+
 def dir_outer(path):
     dir_path_splits = path.split('/')[:-1]
     return "/".join(dir_path_splits)

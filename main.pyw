@@ -1,4 +1,7 @@
 import io
+import glob
+
+from libs.fileUtil import removePathFiles
 from PIL import Image
 from PIL.ImageQt import ImageQt
 from PyQt5 import QtCore
@@ -39,6 +42,9 @@ class MainWindow(QMainWindow, mainUi.Ui_MainWindow):
         self.btnPathSelect.clicked.connect(self.clickSelectPath)
         self.btnStart.clicked.connect(self.clickStart)
         self.btnStop.clicked.connect(self.clickStop)
+
+        self.btnDeleteFile.clicked.connect(self.clickDeleteSelectFile)
+        self.btnDeleteAllFiles.clicked.connect(self.clickDeleteAllFiles)
 
         self.lsFiles.itemSelectionChanged.connect(self.onCaptureFileChanged)
 
@@ -201,6 +207,30 @@ class MainWindow(QMainWindow, mainUi.Ui_MainWindow):
         pix = pix.scaledToWidth(self.lbPreview.width(),
                                 Qt.SmoothTransformation)
         self.lbPreview.setPixmap(pix)
+
+    def clickDeleteSelectFile(self):
+        try:
+            item = self.lsFiles.selectedItems()
+            row = self.lsFiles.currentRow()
+            if len(item) > 0:
+                os.remove(os.path.join(self.core.capturePath, item[0].text()))
+                self.lsFiles.takeItem(row)
+        except Exception as e:
+            print(e)
+
+    def clickDeleteAllFiles(self):
+        ret = QMessageBox.question(
+            self, "경고", "정말 모든 파일을 지우시겠습니까?", QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+
+        if ret == QMessageBox.Yes:
+            try:
+                for file in ['*.png', '*.jpg']:
+                    path = os.path.join(self.core.capturePath, file)
+                    files = glob.glob(path)
+                    removePathFiles(files)
+                self.lsFiles.clear()
+            except Exception as e:
+                print(e)
 
 
 if __name__ == "__main__":
