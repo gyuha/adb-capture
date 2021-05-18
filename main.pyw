@@ -1,3 +1,4 @@
+from actionController import ActionController
 import io
 import glob
 
@@ -40,6 +41,8 @@ class MainWindow(QMainWindow, mainUi.Ui_MainWindow):
         self.btnConfigAdd.clicked.connect(self.clickConfigAdd)
         self.btnConfigRemove.clicked.connect(self.clickConfigRemove)
         self.btnPathSelect.clicked.connect(self.clickSelectPath)
+
+        self.btnCapture.clicked.connect(self.clickCapture)
         self.btnStart.clicked.connect(self.clickStart)
         self.btnStop.clicked.connect(self.clickStop)
 
@@ -49,6 +52,9 @@ class MainWindow(QMainWindow, mainUi.Ui_MainWindow):
         self.lsFiles.itemSelectionChanged.connect(self.onCaptureFileChanged)
 
         self.selectRow = 0
+
+        self.actionController = ActionController()
+        self.actionController.actionDone.connect(self.actionDone)
 
         self.setLsFiles("C:\\workspace\\adb-capture")
         self.loadCaptureFiles()
@@ -156,16 +162,38 @@ class MainWindow(QMainWindow, mainUi.Ui_MainWindow):
 
     def clickStop(self):
         print("stop Clicked", self.core.capturePath)
+        self.actionController.stopAction()
         self.macroTable.setDisabled(False)
 
     def clickStart(self):
         print("start Clicked")
         self.macroTable.setDisabled(True)
+        self.selectRow = 0
         self.macroTable.selectRow(self.selectRow)
+        self.actionController.setAction("capture", "take")
+        # get_screen('test.png')
+
+    def getRowValues(self):
+        row = self.selectRow
+        action = self.macroTable.cellWidget(row, 0).currentText()
+        value = self.macroTable.item(row, 1).text()
+        return (action, value)
+
+    def nextAction(self):
         self.selectRow = self.selectRow + 1
         if self.selectRow >= self.macroTable.rowCount():
             self.selectRow = 0
-        # get_screen('test.png')
+        self.macroTable.selectRow(self.selectRow)
+        action, value = self.getRowValues()
+        self.actionController.setAction(action, value)
+
+    @pyqtSlot()
+    def actionDone(self):
+        print('===> actionDone')
+        self.nextAction()
+
+    def clickCapture(self):
+        self.actionController.setAction("capture", 1000)
 
     def pil2pixmap(self, image):
         bytes_img = io.BytesIO()
