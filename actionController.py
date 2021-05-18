@@ -10,10 +10,13 @@ class ActionController(QObject):
         super().__init__()
         self.running = False
 
-    def setAction(self, action, value):
-        if self.running == True:
-            return
+    def start(self):
         self.running = True
+
+    def stop(self):
+        self.running = False
+
+    def setAction(self, action, value):
         if action == "delay":
             timeout = int(value)
         else:
@@ -22,11 +25,11 @@ class ActionController(QObject):
         QTimer.singleShot(timeout, lambda: self.runAction(action, value))
 
     def runAction(self, action, value):
+        if self.running == False:
+            return
         print(action)
         print(value)
 
-        if self.running == False:
-            return
         self.actionDone.emit()
 
     def stopAction(self):

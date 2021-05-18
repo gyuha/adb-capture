@@ -1,0 +1,360 @@
+[
+    {
+        "label": "subprocess",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "subprocess",
+        "description": "subprocess",
+        "detail": "subprocess",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "Enum",
+        "importPath": "enum",
+        "description": "enum",
+        "isExtraImport": true,
+        "detail": "enum",
+        "documentation": {}
+    },
+    {
+        "label": "Image",
+        "importPath": "PIL",
+        "description": "PIL",
+        "isExtraImport": true,
+        "detail": "PIL",
+        "documentation": {}
+    },
+    {
+        "label": "FPDF",
+        "importPath": "fpdf",
+        "description": "fpdf",
+        "isExtraImport": true,
+        "detail": "fpdf",
+        "documentation": {}
+    },
+    {
+        "label": "QObject",
+        "importPath": "PyQt5.QtCore",
+        "description": "PyQt5.QtCore",
+        "isExtraImport": true,
+        "detail": "PyQt5.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PyQt5.QtCore",
+        "description": "PyQt5.QtCore",
+        "isExtraImport": true,
+        "detail": "PyQt5.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "site",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "site",
+        "description": "site",
+        "detail": "site",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PyQt5.QtWidgets",
+        "description": "PyQt5.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt5.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "QtSingleton",
+        "importPath": "libs.qtSingleton",
+        "description": "libs.qtSingleton",
+        "isExtraImport": true,
+        "detail": "libs.qtSingleton",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "QtCore",
+        "importPath": "PyQt5",
+        "description": "PyQt5",
+        "isExtraImport": true,
+        "detail": "PyQt5",
+        "documentation": {}
+    },
+    {
+        "label": "QtGui",
+        "importPath": "PyQt5",
+        "description": "PyQt5",
+        "isExtraImport": true,
+        "detail": "PyQt5",
+        "documentation": {}
+    },
+    {
+        "label": "QtWidgets",
+        "importPath": "PyQt5",
+        "description": "PyQt5",
+        "isExtraImport": true,
+        "detail": "PyQt5",
+        "documentation": {}
+    },
+    {
+        "label": "imagesPathToPdf",
+        "importPath": "libs.imagesPathToPdf",
+        "description": "libs.imagesPathToPdf",
+        "isExtraImport": true,
+        "detail": "libs.imagesPathToPdf",
+        "documentation": {}
+    },
+    {
+        "label": "AdbKey",
+        "kind": 6,
+        "importPath": "adb.adbKey",
+        "description": "adb.adbKey",
+        "peekOfCode": "class AdbKey(Enum):\n    KEYCODE_UNKNOWN = \"KEYCODE_UNKNOWN\"\n    KEYCODE_MENU = \"KEYCODE_MENU\"\n    KEYCODE_SOFT_RIGHT = \"KEYCODE_SOFT_RIGHT\"\n    KEYCODE_HOME = \"KEYCODE_HOME\"\n    KEYCODE_BACK = \"KEYCODE_BACK\"\n    KEYCODE_CALL = \"KEYCODE_CALL\"\n    KEYCODE_ENDCALL = \"KEYCODE_ENDCALL\"\n    KEYCODE_0 = \"KEYCODE_0\"\n    KEYCODE_1 = \"KEYCODE_1\"",
+        "detail": "adb.adbKey",
+        "documentation": {}
+    },
+    {
+        "label": "send_adb_key",
+        "kind": 2,
+        "importPath": "adb.adbKey",
+        "description": "adb.adbKey",
+        "peekOfCode": "def send_adb_key(keymap):\n    cmd = \"adb  shell input keyevent \" + keymap\n    try:\n        subprocess.run(cmd, shell=True)\n    except subprocess.CalledProcessError:\n        print('connect error')",
+        "detail": "adb.adbKey",
+        "documentation": {}
+    },
+    {
+        "label": "get_screen",
+        "kind": 2,
+        "importPath": "adb.capture",
+        "description": "adb.capture",
+        "peekOfCode": "def get_screen(filename):\n    print(filename)\n    cmd = \"adb  shell screencap -p\"\n    try:\n        process = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)\n        binary_screenshot = process.stdout.read()\n        binary_screenshot = binary_screenshot.replace(b'\\r\\n', b'\\n')\n        with open(filename, 'wb') as f:\n            f.write(binary_screenshot)\n    except Exception:",
+        "detail": "adb.capture",
+        "documentation": {}
+    },
+    {
+        "label": "imageCrop",
+        "kind": 2,
+        "importPath": "adb.capture",
+        "description": "adb.capture",
+        "peekOfCode": "def imageCrop(filename, x, y, width, height, toJpg=False):\n    img = Image.open(filename)\n    area = (x, y, width, height)\n    croppedImg = img.crop(area)\n    img.close()\n    try:\n        if toJpg:\n            os.remove(filename)\n            filename = filename.replace('.png', '.jpg')\n            croppedImg = croppedImg.convert('RGB')",
+        "detail": "adb.capture",
+        "documentation": {}
+    },
+    {
+        "label": "current_dir_path",
+        "kind": 2,
+        "importPath": "libs.fileUtil",
+        "description": "libs.fileUtil",
+        "peekOfCode": "def current_dir_path():\n    return os.getcwd()\ndef dir(path):\n    return os.path.isdir(path) and [\"..\"] + os.listdir(path) or ''\ndef dir_inner(cur_path, dir):\n    moved = \"%s/%s\" % (cur_path, dir)\n    if os.path.isdir(moved):\n        return moved\n    else:\n        return cur_path",
+        "detail": "libs.fileUtil",
+        "documentation": {}
+    },
+    {
+        "label": "dir",
+        "kind": 2,
+        "importPath": "libs.fileUtil",
+        "description": "libs.fileUtil",
+        "peekOfCode": "def dir(path):\n    return os.path.isdir(path) and [\"..\"] + os.listdir(path) or ''\ndef dir_inner(cur_path, dir):\n    moved = \"%s/%s\" % (cur_path, dir)\n    if os.path.isdir(moved):\n        return moved\n    else:\n        return cur_path\ndef removePathFiles(files):\n    for f in files:",
+        "detail": "libs.fileUtil",
+        "documentation": {}
+    },
+    {
+        "label": "dir_inner",
+        "kind": 2,
+        "importPath": "libs.fileUtil",
+        "description": "libs.fileUtil",
+        "peekOfCode": "def dir_inner(cur_path, dir):\n    moved = \"%s/%s\" % (cur_path, dir)\n    if os.path.isdir(moved):\n        return moved\n    else:\n        return cur_path\ndef removePathFiles(files):\n    for f in files:\n        try:\n            os.remove(f)",
+        "detail": "libs.fileUtil",
+        "documentation": {}
+    },
+    {
+        "label": "removePathFiles",
+        "kind": 2,
+        "importPath": "libs.fileUtil",
+        "description": "libs.fileUtil",
+        "peekOfCode": "def removePathFiles(files):\n    for f in files:\n        try:\n            os.remove(f)\n        except OSError as e:\n            print(\"Error: %s : %s\" % (f, e.strerror))\ndef dir_outer(path):\n    dir_path_splits = path.split('/')[:-1]\n    return \"/\".join(dir_path_splits)\ndef create_directory(cur_path, new_dir):",
+        "detail": "libs.fileUtil",
+        "documentation": {}
+    },
+    {
+        "label": "dir_outer",
+        "kind": 2,
+        "importPath": "libs.fileUtil",
+        "description": "libs.fileUtil",
+        "peekOfCode": "def dir_outer(path):\n    dir_path_splits = path.split('/')[:-1]\n    return \"/\".join(dir_path_splits)\ndef create_directory(cur_path, new_dir):\n    new_dir = cur_path + '/' + new_dir\n    if not os.path.exists(new_dir):\n        os.mkdir(new_dir)\n    else:\n        new_dir = 0\n    return new_dir",
+        "detail": "libs.fileUtil",
+        "documentation": {}
+    },
+    {
+        "label": "create_directory",
+        "kind": 2,
+        "importPath": "libs.fileUtil",
+        "description": "libs.fileUtil",
+        "peekOfCode": "def create_directory(cur_path, new_dir):\n    new_dir = cur_path + '/' + new_dir\n    if not os.path.exists(new_dir):\n        os.mkdir(new_dir)\n    else:\n        new_dir = 0\n    return new_dir\ndef rename(src, dis):\n    if not os.path.exists(dis):\n        os.rename(src, dis)",
+        "detail": "libs.fileUtil",
+        "documentation": {}
+    },
+    {
+        "label": "rename",
+        "kind": 2,
+        "importPath": "libs.fileUtil",
+        "description": "libs.fileUtil",
+        "peekOfCode": "def rename(src, dis):\n    if not os.path.exists(dis):\n        os.rename(src, dis)\n        return dis\n    else:\n        return 0\nif __name__ == \"__main__\":\n    \"\"\" test \"\"\"\n    current_path = current_dir_path()\n    test_dir = 'test_dir'",
+        "detail": "libs.fileUtil",
+        "documentation": {}
+    },
+    {
+        "label": "imagesPathToPdf",
+        "kind": 2,
+        "importPath": "libs.imagesPathToPdf",
+        "description": "libs.imagesPathToPdf",
+        "peekOfCode": "def imagesPathToPdf(imagesPath, pdfFileName):\n    pdf = FPDF()\n    # imagelist is the list with all image filenames\n    imageList = []\n    for file in os.listdir(imagesPath):\n        if file.endswith(\".jpg\"):\n            imageList.append(os.path.join(imagesPath, file))\n    for image in imageList:\n        pdf.add_page()\n        pdf.image(image, x=0, y=0, w=210, h=297)",
+        "detail": "libs.imagesPathToPdf",
+        "documentation": {}
+    },
+    {
+        "label": "QtSingleton",
+        "kind": 6,
+        "importPath": "libs.qtSingleton",
+        "description": "libs.qtSingleton",
+        "peekOfCode": "class QtSingleton(QObject):\n    __instance = None\n    def __new__(cls, *args, **kwargs):\n        if not isinstance(cls.__instance, cls):\n            cls.__instance = QObject.__new__(cls, *args, **kwargs)\n        return cls.__instance\nif __name__ == \"__main__\":\n    class AA(QtSingleton):\n        def __init__(self):\n            super().__init__()",
+        "detail": "libs.qtSingleton",
+        "documentation": {}
+    },
+    {
+        "label": "bin_dir",
+        "kind": 5,
+        "importPath": "venv.Scripts.activate_this",
+        "description": "venv.Scripts.activate_this",
+        "peekOfCode": "bin_dir = os.path.dirname(abs_file)\nbase = bin_dir[: -len(\"Scripts\") - 1]  # strip away the bin part from the __file__, plus the path separator\n# prepend bin to PATH (this file is inside the bin directory)\nos.environ[\"PATH\"] = os.pathsep.join([bin_dir] + os.environ.get(\"PATH\", \"\").split(os.pathsep))\nos.environ[\"VIRTUAL_ENV\"] = base  # virtual env is right above bin directory\n# add the virtual environments libraries to the host python import mechanism\nprev_length = len(sys.path)\nfor lib in \"..\\Lib\\site-packages\".split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path.decode(\"utf-8\") if \"\" else path)",
+        "detail": "venv.Scripts.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "base",
+        "kind": 5,
+        "importPath": "venv.Scripts.activate_this",
+        "description": "venv.Scripts.activate_this",
+        "peekOfCode": "base = bin_dir[: -len(\"Scripts\") - 1]  # strip away the bin part from the __file__, plus the path separator\n# prepend bin to PATH (this file is inside the bin directory)\nos.environ[\"PATH\"] = os.pathsep.join([bin_dir] + os.environ.get(\"PATH\", \"\").split(os.pathsep))\nos.environ[\"VIRTUAL_ENV\"] = base  # virtual env is right above bin directory\n# add the virtual environments libraries to the host python import mechanism\nprev_length = len(sys.path)\nfor lib in \"..\\Lib\\site-packages\".split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path.decode(\"utf-8\") if \"\" else path)\nsys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]",
+        "detail": "venv.Scripts.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "os.environ[\"PATH\"]",
+        "kind": 5,
+        "importPath": "venv.Scripts.activate_this",
+        "description": "venv.Scripts.activate_this",
+        "peekOfCode": "os.environ[\"PATH\"] = os.pathsep.join([bin_dir] + os.environ.get(\"PATH\", \"\").split(os.pathsep))\nos.environ[\"VIRTUAL_ENV\"] = base  # virtual env is right above bin directory\n# add the virtual environments libraries to the host python import mechanism\nprev_length = len(sys.path)\nfor lib in \"..\\Lib\\site-packages\".split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path.decode(\"utf-8\") if \"\" else path)\nsys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]\nsys.real_prefix = sys.prefix\nsys.prefix = base",
+        "detail": "venv.Scripts.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "os.environ[\"VIRTUAL_ENV\"]",
+        "kind": 5,
+        "importPath": "venv.Scripts.activate_this",
+        "description": "venv.Scripts.activate_this",
+        "peekOfCode": "os.environ[\"VIRTUAL_ENV\"] = base  # virtual env is right above bin directory\n# add the virtual environments libraries to the host python import mechanism\nprev_length = len(sys.path)\nfor lib in \"..\\Lib\\site-packages\".split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path.decode(\"utf-8\") if \"\" else path)\nsys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]\nsys.real_prefix = sys.prefix\nsys.prefix = base",
+        "detail": "venv.Scripts.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "prev_length",
+        "kind": 5,
+        "importPath": "venv.Scripts.activate_this",
+        "description": "venv.Scripts.activate_this",
+        "peekOfCode": "prev_length = len(sys.path)\nfor lib in \"..\\Lib\\site-packages\".split(os.pathsep):\n    path = os.path.realpath(os.path.join(bin_dir, lib))\n    site.addsitedir(path.decode(\"utf-8\") if \"\" else path)\nsys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]\nsys.real_prefix = sys.prefix\nsys.prefix = base",
+        "detail": "venv.Scripts.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "sys.path[:]",
+        "kind": 5,
+        "importPath": "venv.Scripts.activate_this",
+        "description": "venv.Scripts.activate_this",
+        "peekOfCode": "sys.path[:] = sys.path[prev_length:] + sys.path[0:prev_length]\nsys.real_prefix = sys.prefix\nsys.prefix = base",
+        "detail": "venv.Scripts.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "sys.real_prefix",
+        "kind": 5,
+        "importPath": "venv.Scripts.activate_this",
+        "description": "venv.Scripts.activate_this",
+        "peekOfCode": "sys.real_prefix = sys.prefix\nsys.prefix = base",
+        "detail": "venv.Scripts.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "sys.prefix",
+        "kind": 5,
+        "importPath": "venv.Scripts.activate_this",
+        "description": "venv.Scripts.activate_this",
+        "peekOfCode": "sys.prefix = base",
+        "detail": "venv.Scripts.activate_this",
+        "documentation": {}
+    },
+    {
+        "label": "ActionController",
+        "kind": 6,
+        "importPath": "actionController",
+        "description": "actionController",
+        "peekOfCode": "class ActionController(QObject):\n    actionDone = pyqtSignal()\n    def __init__(self):\n        super().__init__()\n        self.running = False\n    def start(self):\n        self.running = True\n    def stop(self):\n        self.running = False\n    def setAction(self, action, value):",
+        "detail": "actionController",
+        "documentation": {}
+    },
+    {
+        "label": "mainCore",
+        "kind": 6,
+        "importPath": "core",
+        "description": "core",
+        "peekOfCode": "class mainCore(QtSingleton):\n    def __init__(self):\n        super().__init__()\n        self.capturePath = './capture'\n        self.macro = []\n        self.configPath = './default.json'\n        self.loadMacro()\n    def loadMacro(self):\n        \"\"\"\n        json의 데이터를 로딩하기",
+        "detail": "core",
+        "documentation": {}
+    },
+    {
+        "label": "macroActions",
+        "kind": 5,
+        "importPath": "core",
+        "description": "core",
+        "peekOfCode": "macroActions = [\"capture\", \"delay\", \"crop\", \"key\"]\nclass mainCore(QtSingleton):\n    def __init__(self):\n        super().__init__()\n        self.capturePath = './capture'\n        self.macro = []\n        self.configPath = './default.json'\n        self.loadMacro()\n    def loadMacro(self):\n        \"\"\"",
+        "detail": "core",
+        "documentation": {}
+    },
+    {
+        "label": "Ui_MainWindow",
+        "kind": 6,
+        "importPath": "mainUi",
+        "description": "mainUi",
+        "peekOfCode": "class Ui_MainWindow(object):\n    def setupUi(self, MainWindow):\n        MainWindow.setObjectName(\"MainWindow\")\n        MainWindow.resize(1328, 817)\n        self.centralwidget = QtWidgets.QWidget(MainWindow)\n        self.centralwidget.setObjectName(\"centralwidget\")\n        self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.centralwidget)\n        self.horizontalLayout_2.setObjectName(\"horizontalLayout_2\")\n        self.verticalLayout = QtWidgets.QVBoxLayout()\n        self.verticalLayout.setObjectName(\"verticalLayout\")",
+        "detail": "mainUi",
+        "documentation": {}
+    }
+]

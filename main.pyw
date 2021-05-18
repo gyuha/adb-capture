@@ -1,6 +1,7 @@
 from actionController import ActionController
 import io
 import glob
+import time
 
 from libs.fileUtil import removePathFiles
 from PIL import Image
@@ -162,6 +163,7 @@ class MainWindow(QMainWindow, mainUi.Ui_MainWindow):
 
     def clickStop(self):
         print("stop Clicked", self.core.capturePath)
+        self.actionController.stop()
         self.actionController.stopAction()
         self.macroTable.setDisabled(False)
 
@@ -170,6 +172,7 @@ class MainWindow(QMainWindow, mainUi.Ui_MainWindow):
         self.macroTable.setDisabled(True)
         self.selectRow = 0
         self.macroTable.selectRow(self.selectRow)
+        self.actionController.start()
         self.actionController.setAction("capture", "take")
         # get_screen('test.png')
 
@@ -189,7 +192,6 @@ class MainWindow(QMainWindow, mainUi.Ui_MainWindow):
 
     @pyqtSlot()
     def actionDone(self):
-        print('===> actionDone')
         self.nextAction()
 
     def clickCapture(self):
