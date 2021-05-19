@@ -2,6 +2,7 @@ from actionController import ActionController
 import io
 import glob
 import time
+import re
 
 from libs.fileUtil import removePathFiles
 from PIL import Image
@@ -59,6 +60,9 @@ class MainWindow(QMainWindow, mainUi.Ui_MainWindow):
 
         self.setLsFiles("C:\\workspace\\adb-capture")
         self.loadCaptureFiles()
+
+        self.fileNumber = 0
+        self.startFileNumber()
 
     def setLsFiles(self, path):
         self.model = QFileSystemModel()
@@ -195,35 +199,59 @@ class MainWindow(QMainWindow, mainUi.Ui_MainWindow):
         self.nextAction()
 
     def clickCapture(self):
-        self.actionController.setAction("capture", 1000)
+        file = self.newFilePath()
+        get_screen(file)
+        self.addCaptureFile(file)
+        self.lsFiles.scrollToBottom()
+        self.lastLsFileSelect()
 
     def pil2pixmap(self, image):
-        bytes_img = io.BytesIO()
-        image.save(bytes_img, format='JPEG')
+        bytesImg = io.BytesIO()
+        image.save(bytesImg, format='JPEG')
 
-        qimg = QImage()
-        qimg.loadFromData(bytes_img.getvalue())
+        qImg = QImage()
+        qImg.loadFromData(bytesImg.getvalue())
 
-        return QPixmap.fromImage(qimg)
+        return QPixmap.fromImage(qImg)
 
     def loadCaptureFiles(self):
         files = os.listdir(self.core.capturePath)
         for file in files:
-            self.addCaptureFile(file)
+            path = os.path.join(self.core.capturePath, file)
+            self.addCaptureFile(path)
 
-    def addCaptureFile(self, file):
-        path = os.path.join(self.core.capturePath, file)
+    def startFileNumber(self):
+        files = os.listdir(self.core.capturePath)
+        p = re.compile('^\d+.jpg$')
+        files = [s for s in files if p.match(s)]
+        if len(files) == 0:
+            self.fileNumber = 0
+            return
+        basename = os.path.basename(files[-1])
+        num = int(os.path.splitext(basename)[0])
+        self.fileNumber = num
+
+    def newFilePath(self):
+        self.fileNumber = self.fileNumber + 1
+        return os.path.join(self.core.capturePath, self.currentFileName())
+
+    def currentFileName(self):
+        return "{:04d}.jpg".format(self.fileNumber)
+
+    def addCaptureFile(self, path):
         # or not (path.endswith(".jpg") and path.endswith(".png")):
-        if os.path.isdir(path) or not (path.endswith(".jpg") or path.endswith(".png")):
+        if os.path.isdir(path) or not (path.endswith(".jpg")):
             return
         picture = Image.open(path)
         picture.thumbnail((80, 120), Image.ANTIALIAS)
-        # icon = QIcon(QPixmap.fromImage(ImageQt(picture)))
-        icon = QIcon(self.pil2pixmap(picture))
-        item = QListWidgetItem(os.path.basename(path), self.lsFiles)
-        item.setStatusTip(path)
-        item.setIcon(icon)
-        # item.clicked.connect()
+
+        try:
+            icon = QIcon(self.pil2pixmap(picture))
+            item = QListWidgetItem(os.path.basename(path), self.lsFiles)
+            item.setStatusTip(path)
+            item.setIcon(icon)
+        except Exception as e:
+            print(e)
 
     def onCaptureFileChanged(self):
         item = self.lsFiles.selectedItems()
@@ -248,6 +276,9 @@ class MainWindow(QMainWindow, mainUi.Ui_MainWindow):
         except Exception as e:
             print(e)
 
+    def lastLsFileSelect(self):
+        self.lsFiles.setCurrentRow(-1)
+
     def clickDeleteAllFiles(self):
         ret = QMessageBox.question(
             self, "경고", "정말 모든 파일을 지우시겠습니까?", QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
@@ -259,6 +290,7 @@ class MainWindow(QMainWindow, mainUi.Ui_MainWindow):
                     files = glob.glob(path)
                     removePathFiles(files)
                 self.lsFiles.clear()
+                self.startFileNumber()
             except Exception as e:
                 print(e)
 
