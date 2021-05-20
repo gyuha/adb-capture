@@ -8,14 +8,14 @@
   - [x] 파일 저장하기
   - [x] 셀 추가
   - [x] 셀 삭제
- - [ ] 자동 기능 제작
-  - [ ] 캡쳐 (현재 페이지)
-  - [ ] 시작하기
-  - [ ] 중단 하기
- - [ ] 파일 목록 표시 만들기
-  - [ ] 선택 파일 삭제 하기
+ - [x] 자동 기능 제작
+  - [x] 캡쳐 (현재 페이지)
+  - [x] 시작하기
+  - [x] 중단 하기
+ - [x] 파일 목록 표시 만들기
+  - [x] 선택 파일 삭제 하기
   - [ ] 폴더 이미지를 pdf로 저장하기
- - [ ] 현재 선택 파일 프리뷰 보기
+ - [x] 현재 선택 파일 프리뷰 보기
 
 ![screen](./image/ui.png)
 
@@ -90,6 +90,7 @@ pip freeze | %{$_.split('==')[0]} | %{pip install --upgrade $_}
 
 
 ## Reference
+* [ADB shell](https://adbshell.com/)
 * [Python Capture Android Phone Screenshot using ADB – ADB Tutorial](https://www.tutorialexample.com/python-capture-android-phone-screenshot-using-adb-adb-tutorial/)
 * [Android Shell (adb.exe) - 안드로이드 여러가지 명령어들](https://m.blog.naver.com/PostView.nhn?blogId=gyurse&logNo=220911727781&proxyReferer=https:%2F%2Fwww.google.co.kr%2F)
 * [안드로이드 키 이벤트 (adb shell로 보내는 법)](http://www.dreamy.pe.kr/zbxe/CodeClip/164608)
