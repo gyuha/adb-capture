@@ -35,6 +35,15 @@
         "documentation": {}
     },
     {
+        "label": "io",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "io",
+        "description": "io",
+        "detail": "io",
+        "documentation": {}
+    },
+    {
         "label": "Image",
         "importPath": "PIL",
         "description": "PIL",
@@ -76,11 +85,93 @@
         "documentation": {}
     },
     {
+        "label": "get_screen",
+        "importPath": "adb.capture",
+        "description": "adb.capture",
+        "isExtraImport": true,
+        "detail": "adb.capture",
+        "documentation": {}
+    },
+    {
+        "label": "imageCrop",
+        "importPath": "adb.capture",
+        "description": "adb.capture",
+        "isExtraImport": true,
+        "detail": "adb.capture",
+        "documentation": {}
+    },
+    {
+        "label": "get_screen",
+        "importPath": "adb.capture",
+        "description": "adb.capture",
+        "isExtraImport": true,
+        "detail": "adb.capture",
+        "documentation": {}
+    },
+    {
+        "label": "imageCrop",
+        "importPath": "adb.capture",
+        "description": "adb.capture",
+        "isExtraImport": true,
+        "detail": "adb.capture",
+        "documentation": {}
+    },
+    {
+        "label": "send_adb_key",
+        "importPath": "adb.adbKey",
+        "description": "adb.adbKey",
+        "isExtraImport": true,
+        "detail": "adb.adbKey",
+        "documentation": {}
+    },
+    {
+        "label": "AdbKey",
+        "importPath": "adb.adbKey",
+        "description": "adb.adbKey",
+        "isExtraImport": true,
+        "detail": "adb.adbKey",
+        "documentation": {}
+    },
+    {
+        "label": "send_adb_key",
+        "importPath": "adb.adbKey",
+        "description": "adb.adbKey",
+        "isExtraImport": true,
+        "detail": "adb.adbKey",
+        "documentation": {}
+    },
+    {
         "label": "*",
         "importPath": "PyQt5.QtWidgets",
         "description": "PyQt5.QtWidgets",
         "isExtraImport": true,
         "detail": "PyQt5.QtWidgets",
+        "documentation": {}
+    },
+    {
+        "label": "asyncio",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "asyncio",
+        "description": "asyncio",
+        "detail": "asyncio",
+        "documentation": {}
+    },
+    {
+        "label": "aiofiles",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "aiofiles",
+        "description": "aiofiles",
+        "detail": "aiofiles",
+        "documentation": {}
+    },
+    {
+        "label": "ClientAsync",
+        "importPath": "ppadb.client_async",
+        "description": "ppadb.client_async",
+        "isExtraImport": true,
+        "detail": "ppadb.client_async",
         "documentation": {}
     },
     {
@@ -133,6 +224,23 @@
         "documentation": {}
     },
     {
+        "label": "imagesPathToPdf",
+        "importPath": "libs.imagesPathToPdf",
+        "description": "libs.imagesPathToPdf",
+        "isExtraImport": true,
+        "detail": "libs.imagesPathToPdf",
+        "documentation": {}
+    },
+    {
+        "label": "time",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "time",
+        "description": "time",
+        "detail": "time",
+        "documentation": {}
+    },
+    {
         "label": "AdbKey",
         "kind": 6,
         "importPath": "adb.adbKey",
@@ -155,7 +263,7 @@
         "kind": 2,
         "importPath": "adb.capture",
         "description": "adb.capture",
-        "peekOfCode": "def get_screen(filename):\n    print(filename)\n    cmd = \"adb  shell screencap -p\"\n    try:\n        process = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)\n        binary_screenshot = process.stdout.read()\n        binary_screenshot = binary_screenshot.replace(b'\\r\\n', b'\\n')\n        with open(filename, 'wb') as f:\n            f.write(binary_screenshot)\n    except Exception:",
+        "peekOfCode": "def get_screen(filename, toJpg=True):\n    print(filename)\n    cmd = \"adb  shell screencap -p\"\n    try:\n        process = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)\n        binary_screenshot = process.stdout.read()\n        binary_screenshot = binary_screenshot.replace(b'\\r\\n', b'\\n')\n        if toJpg:\n            filename = filename.replace('.png', '.jpg')\n            img = Image.open(io.BytesIO(binary_screenshot))",
         "detail": "adb.capture",
         "documentation": {}
     },

@@ -67,10 +67,7 @@ $ pip install -r requirements.txt
 
 ------
 
-## How to use
-```cmd
-$ python mangashowme.py
-```
+
 
 ## Make Install file..
 빌드 할 때는 python이 3.6 버전이여야 한다.
@@ -88,6 +85,11 @@ pyinstaller -y -F "mangashowme.py"
 pip freeze | %{$_.split('==')[0]} | %{pip install --upgrade $_}
 ```
 
+# scrcpy
+```
+scrcpy -r tmp.mp4
+ffmpeg -i tmp.mp4 -vframes 1 sshot.png
+```
 
 ## Reference
 * [ADB shell](https://adbshell.com/)
