@@ -34,7 +34,7 @@ class mainCore(QtSingleton):
             print(IOError)
 
     def currentFileName(self):
-        return "{:04d}.png".format(self.fileNumber)
+        return "{:04d}.jpg".format(self.fileNumber)
 
     def currentFilePath(self):
         return os.path.join(self.capturePath, self.currentFileName())
