@@ -30,6 +30,7 @@ class ActionController(QObject):
             return
 
         if action == "capture":
+            scrcpy = ScrCpyCapture()
             get_screen('./capture/a.png')
         elif action == "crop":
             print('📢[actionController.py:34]:', "crop")

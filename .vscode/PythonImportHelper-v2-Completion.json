@@ -52,6 +52,24 @@
         "documentation": {}
     },
     {
+        "label": "time",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "time",
+        "description": "time",
+        "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "signal",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "signal",
+        "description": "signal",
+        "detail": "signal",
+        "documentation": {}
+    },
+    {
         "label": "FPDF",
         "importPath": "fpdf",
         "description": "fpdf",
@@ -149,32 +167,6 @@
         "documentation": {}
     },
     {
-        "label": "asyncio",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "asyncio",
-        "description": "asyncio",
-        "detail": "asyncio",
-        "documentation": {}
-    },
-    {
-        "label": "aiofiles",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "aiofiles",
-        "description": "aiofiles",
-        "detail": "aiofiles",
-        "documentation": {}
-    },
-    {
-        "label": "ClientAsync",
-        "importPath": "ppadb.client_async",
-        "description": "ppadb.client_async",
-        "isExtraImport": true,
-        "detail": "ppadb.client_async",
-        "documentation": {}
-    },
-    {
         "label": "QtSingleton",
         "importPath": "libs.qtSingleton",
         "description": "libs.qtSingleton",
@@ -232,15 +224,6 @@
         "documentation": {}
     },
     {
-        "label": "time",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "time",
-        "description": "time",
-        "detail": "time",
-        "documentation": {}
-    },
-    {
         "label": "AdbKey",
         "kind": 6,
         "importPath": "adb.adbKey",
@@ -274,6 +257,15 @@
         "description": "adb.capture",
         "peekOfCode": "def imageCrop(filename, x, y, width, height, toJpg=False):\n    img = Image.open(filename)\n    area = (x, y, width, height)\n    croppedImg = img.crop(area)\n    img.close()\n    try:\n        if toJpg:\n            os.remove(filename)\n            filename = filename.replace('.png', '.jpg')\n            croppedImg = croppedImg.convert('RGB')",
         "detail": "adb.capture",
+        "documentation": {}
+    },
+    {
+        "label": "ScrCpyCapture",
+        "kind": 6,
+        "importPath": "adb.ScrcpyCapture",
+        "description": "adb.ScrcpyCapture",
+        "peekOfCode": "class ScrCpyCapture():\n    def start(self, executable_file, cwd='./'):\n        return subprocess.Popen(\n            executable_file,\n            stdin=subprocess.PIPE,\n            stdout=subprocess.PIPE,\n            stderr=subprocess.PIPE,\n            cwd=cwd\n        )\n    def read(self, process):",
+        "detail": "adb.ScrcpyCapture",
         "documentation": {}
     },
     {

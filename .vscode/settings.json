@@ -2,8 +2,11 @@
   "cSpell.words": [
     "DPAD",
     "Popen",
+    "ffmpeg",
     "fpdf",
-    "pyqt"
+    "pyqt",
+    "scrcpy",
+    "vframes"
   ],
   "python.pythonPath": "venv\\Scripts\\python.exe",
   "python.formatting.provider": "autopep8",
