@@ -1,3 +1,4 @@
+import os
 from libs.qtSingleton import QtSingleton
 import json
 
@@ -11,6 +12,7 @@ class mainCore(QtSingleton):
         self.macro = []
         self.configPath = './default.json'
         self.loadMacro()
+        self.fileNumber = 0
 
     def loadMacro(self):
         """
@@ -30,3 +32,13 @@ class mainCore(QtSingleton):
                 json.dump(self.macro, jsonFile)
         except IOError:
             print(IOError)
+
+    def currentFileName(self):
+        return "{:04d}.png".format(self.fileNumber)
+
+    def currentFilePath(self):
+        return os.path.join(self.capturePath, self.currentFileName())
+
+    def newFilePath(self):
+        self.fileNumber = self.fileNumber + 1
+        return os.path.join(self.capturePath, self.currentFileName())

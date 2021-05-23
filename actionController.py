@@ -1,3 +1,6 @@
+import os
+from adb.ScrcpyCapture import ScrCpyCapture
+from core import mainCore
 from adb.capture import get_screen, imageCrop
 from adb.adbKey import send_adb_key
 import sys
@@ -11,6 +14,7 @@ class ActionController(QObject):
     def __init__(self):
         super().__init__()
         self.running = False
+        self.core = mainCore()
 
     def start(self):
         self.running = True
@@ -31,10 +35,21 @@ class ActionController(QObject):
 
         if action == "capture":
             scrcpy = ScrCpyCapture()
-            get_screen('./capture/a.png')
+            scrcpy.capture(os.path.join(self.core.newFilePath()))
+            # get_screen('./capture/a.png')
         elif action == "crop":
-            print('📢[actionController.py:34]:', "crop")
-            # imageCrop("t", 1, 2, 3, 4, True)
+            print(value)
+            size = value.split(',')
+            if len(size) < 4:
+                print(size)
+                return
+            imageCrop(
+                os.path.join(self.core.currentFilePath()),
+                int(size[0]),
+                int(size[1]),
+                int(size[2]),
+                int(size[3])
+            )
         elif action == "key":
             send_adb_key(value)
 

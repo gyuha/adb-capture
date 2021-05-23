@@ -103,6 +103,22 @@
         "documentation": {}
     },
     {
+        "label": "ScrCpyCapture",
+        "importPath": "adb.ScrcpyCapture",
+        "description": "adb.ScrcpyCapture",
+        "isExtraImport": true,
+        "detail": "adb.ScrcpyCapture",
+        "documentation": {}
+    },
+    {
+        "label": "mainCore",
+        "importPath": "core",
+        "description": "core",
+        "isExtraImport": true,
+        "detail": "core",
+        "documentation": {}
+    },
+    {
         "label": "get_screen",
         "importPath": "adb.capture",
         "description": "adb.capture",
@@ -426,7 +442,7 @@
         "kind": 6,
         "importPath": "actionController",
         "description": "actionController",
-        "peekOfCode": "class ActionController(QObject):\n    actionDone = pyqtSignal()\n    def __init__(self):\n        super().__init__()\n        self.running = False\n    def start(self):\n        self.running = True\n    def stop(self):\n        self.running = False\n    def setAction(self, action, value):",
+        "peekOfCode": "class ActionController(QObject):\n    actionDone = pyqtSignal()\n    def __init__(self):\n        super().__init__()\n        self.running = False\n        self.core = mainCore()\n    def start(self):\n        self.running = True\n    def stop(self):\n        self.running = False",
         "detail": "actionController",
         "documentation": {}
     },
@@ -435,7 +451,7 @@
         "kind": 6,
         "importPath": "core",
         "description": "core",
-        "peekOfCode": "class mainCore(QtSingleton):\n    def __init__(self):\n        super().__init__()\n        self.capturePath = './capture'\n        self.macro = []\n        self.configPath = './default.json'\n        self.loadMacro()\n    def loadMacro(self):\n        \"\"\"\n        json의 데이터를 로딩하기",
+        "peekOfCode": "class mainCore(QtSingleton):\n    def __init__(self):\n        super().__init__()\n        self.capturePath = './capture'\n        self.macro = []\n        self.configPath = './default.json'\n        self.loadMacro()\n        self.fileNumber = 0\n    def loadMacro(self):\n        \"\"\"",
         "detail": "core",
         "documentation": {}
     },
@@ -444,7 +460,7 @@
         "kind": 5,
         "importPath": "core",
         "description": "core",
-        "peekOfCode": "macroActions = [\"capture\", \"delay\", \"crop\", \"key\"]\nclass mainCore(QtSingleton):\n    def __init__(self):\n        super().__init__()\n        self.capturePath = './capture'\n        self.macro = []\n        self.configPath = './default.json'\n        self.loadMacro()\n    def loadMacro(self):\n        \"\"\"",
+        "peekOfCode": "macroActions = [\"capture\", \"delay\", \"crop\", \"key\"]\nclass mainCore(QtSingleton):\n    def __init__(self):\n        super().__init__()\n        self.capturePath = './capture'\n        self.macro = []\n        self.configPath = './default.json'\n        self.loadMacro()\n        self.fileNumber = 0\n    def loadMacro(self):",
         "detail": "core",
         "documentation": {}
     },

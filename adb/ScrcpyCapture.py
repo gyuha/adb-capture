@@ -52,10 +52,11 @@ class ScrCpyCapture():
         time.sleep(1)
         print(output)
         self.send_keyboard_interrupt(p)
-        print(output, "end")
+        print(output, "> capture")
         p = self.start([os.path.realpath('./bin/ffmpeg/ffmpeg.exe'),
                        '-i', os.path.realpath('tmp.mkv'), '-vframes', '1', os.path.realpath(output)])
-        os.remove(os.path.realpath('tmp.mkv'))
+        print(output, "> end")
+        # os.remove(os.path.realpath('tmp.mkv'))
 
 
 if __name__ == "__main__":

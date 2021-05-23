@@ -199,7 +199,7 @@ class MainWindow(QMainWindow, mainUi.Ui_MainWindow):
         self.nextAction()
 
     def clickCapture(self):
-        file = self.newFilePath()
+        file = self.core.newFilePath()
         get_screen(file)
         self.addCaptureFile(file)
         self.lsFiles.scrollToBottom()
@@ -230,13 +230,6 @@ class MainWindow(QMainWindow, mainUi.Ui_MainWindow):
         basename = os.path.basename(files[-1])
         num = int(os.path.splitext(basename)[0])
         self.fileNumber = num
-
-    def newFilePath(self):
-        self.fileNumber = self.fileNumber + 1
-        return os.path.join(self.core.capturePath, self.currentFileName())
-
-    def currentFileName(self):
-        return "{:04d}.jpg".format(self.fileNumber)
 
     def addCaptureFile(self, path):
         # or not (path.endswith(".jpg") and path.endswith(".png")):

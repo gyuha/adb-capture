@@ -1,1 +1,1 @@
-[{"action": "capture", "value": ""}, {"action": "delay", "value": "1000"}, {"action": "crop", "value": "0,485,1080,2015"}, {"action": "key", "value": "KEYCODE_VOLUME_UP"}]
+[{"action": "capture", "value": ""}, {"action": "delay", "value": "1000"}, {"action": "crop", "value": "0,525,1080,1870"}, {"action": "key", "value": "KEYCODE_VOLUME_UP"}]
