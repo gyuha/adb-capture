@@ -442,7 +442,7 @@
         "kind": 6,
         "importPath": "actionController",
         "description": "actionController",
-        "peekOfCode": "class ActionController(QObject):\n    actionDone = pyqtSignal()\n    def __init__(self):\n        super().__init__()\n        self.running = False\n        self.core = mainCore()\n    def start(self):\n        self.running = True\n    def stop(self):\n        self.running = False",
+        "peekOfCode": "class ActionController(QObject):\n    actionDone = pyqtSignal()\n    addImage = pyqtSignal(str)\n    def __init__(self):\n        super().__init__()\n        self.running = False\n        self.core = mainCore()\n    def start(self):\n        self.running = True\n    def stop(self):",
         "detail": "actionController",
         "documentation": {}
     },

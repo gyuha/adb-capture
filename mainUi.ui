@@ -161,7 +161,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QLineEdit" name="leCUrrentCount">
+             <widget class="QLineEdit" name="leCurrentCount">
               <property name="enabled">
                <bool>false</bool>
               </property>
@@ -189,7 +189,7 @@
                <string>9999</string>
               </property>
               <property name="text">
-               <string>100</string>
+               <string>1000</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>

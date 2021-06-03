@@ -1,4 +1,5 @@
 import os
+import time
 from adb.ScrcpyCapture import ScrCpyCapture
 from core import mainCore
 from adb.capture import get_screen, imageCrop
@@ -10,6 +11,7 @@ from PyQt5.QtCore import *
 
 class ActionController(QObject):
     actionDone = pyqtSignal()
+    addImage = pyqtSignal(str)
 
     def __init__(self):
         super().__init__()
@@ -35,8 +37,11 @@ class ActionController(QObject):
 
         if action == "capture":
             scrcpy = ScrCpyCapture()
-            scrcpy.capture(os.path.join(self.core.newFilePath()))
+            path = os.path.join(self.core.newFilePath())
+            scrcpy.capture(os.path.join(path))
             # get_screen('./capture/a.png')
+            time.sleep(0.1)
+            self.addImage.emit(path)
         elif action == "crop":
             print(value)
             size = value.split(',')
