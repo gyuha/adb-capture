@@ -5,3 +5,4 @@ __pycache__
 .pyenv
 
 tmp.mkv
+default-s6.json

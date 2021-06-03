@@ -352,7 +352,7 @@
         "kind": 2,
         "importPath": "libs.imagesPathToPdf",
         "description": "libs.imagesPathToPdf",
-        "peekOfCode": "def imagesPathToPdf(imagesPath, pdfFileName):\n    pdf = FPDF()\n    # imagelist is the list with all image filenames\n    imageList = []\n    for file in os.listdir(imagesPath):\n        if file.endswith(\".jpg\"):\n            imageList.append(os.path.join(imagesPath, file))\n    for image in imageList:\n        pdf.add_page()\n        pdf.image(image, x=0, y=0, w=210, h=297)",
+        "peekOfCode": "def imagesPathToPdf(imagesPath, pdfFileName='bookTItle.pdf'):\n    pdf = FPDF()\n    # imagelist is the list with all image filenames\n    imageList = []\n    for file in os.listdir(imagesPath):\n        if file.endswith(\".jpg\"):\n            imageList.append(os.path.join(imagesPath, file))\n    for image in imageList:\n        pdf.add_page()\n        pdf.image(image, x=0, y=0, w=210, h=297)",
         "detail": "libs.imagesPathToPdf",
         "documentation": {}
     },
@@ -471,6 +471,15 @@
         "description": "mainUi",
         "peekOfCode": "class Ui_MainWindow(object):\n    def setupUi(self, MainWindow):\n        MainWindow.setObjectName(\"MainWindow\")\n        MainWindow.resize(1328, 817)\n        self.centralwidget = QtWidgets.QWidget(MainWindow)\n        self.centralwidget.setObjectName(\"centralwidget\")\n        self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.centralwidget)\n        self.horizontalLayout_2.setObjectName(\"horizontalLayout_2\")\n        self.verticalLayout = QtWidgets.QVBoxLayout()\n        self.verticalLayout.setObjectName(\"verticalLayout\")",
         "detail": "mainUi",
+        "documentation": {}
+    },
+    {
+        "label": "usage",
+        "kind": 2,
+        "importPath": "pdfSave",
+        "description": "pdfSave",
+        "peekOfCode": "def usage():\n    print(\"python \" + sys.argv[0] + \" [fileName]\")\nif __name__ == '__main__':\n    if (len(sys.argv) <= 1):\n        usage()\n        exit(1)\n    imagesPathToPdf('./capture/', sys.argv[1])",
+        "detail": "pdfSave",
         "documentation": {}
     }
 ]
