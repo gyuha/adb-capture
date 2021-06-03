@@ -1,25 +1,22 @@
-from actionController import ActionController
-import io
 import glob
-import time
+import io
+import os
 import re
+import sys
+import time
 
-from libs.fileUtil import removePathFiles
 from PIL import Image
 from PIL.ImageQt import ImageQt
-from PyQt5 import QtCore
+from PyQt5 import QtCore, uic
+from PyQt5.QtCore import QDir, Qt, pyqtSlot
 from PyQt5.QtGui import QIcon, QImage, QPixmap
-from core import mainCore, macroActions
-from adb.capture import get_screen
-import sys
-import os
-
 from PyQt5.QtWidgets import *
-from PyQt5 import uic
-from PyQt5.QtCore import QDir, pyqtSlot, Qt
 
 import mainUi
-
+from actionController import ActionController
+from adb.capture import get_screen
+from core import macroActions, mainCore
+from libs.fileUtil import removePathFiles
 
 # form_class = uic.loadUiType("mainUi.ui")[0]
 
@@ -241,7 +238,6 @@ class MainWindow(QMainWindow, mainUi.Ui_MainWindow):
         self.leCurrentCount.setText(str(num))
 
     def addCaptureFile(self, path):
-        print('📢[main.pyw:243]:', path)
         # or not (path.endswith(".jpg") and path.endswith(".png")):
         if os.path.isdir(path) or not (path.endswith(".jpg")):
             return
@@ -302,4 +298,4 @@ if __name__ == "__main__":
     app = QApplication(sys.argv)
     mainWindow = MainWindow()
     mainWindow.show()
-    exit(app.exec_())
+    app.exec_()

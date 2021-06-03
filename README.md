@@ -56,6 +56,11 @@ python --version
 # ui to py
 > pyuic5.exe -x .\mainUi.ui -o .\mainUi.py
 
+# pyinstaller
+```
+pyinstaller --onefile --windowed main.pyw
+```
+
 #### Linux
 
 ```bash

@@ -35,12 +35,28 @@
         "documentation": {}
     },
     {
+        "label": "Enum",
+        "importPath": "enum",
+        "description": "enum",
+        "isExtraImport": true,
+        "detail": "enum",
+        "documentation": {}
+    },
+    {
         "label": "io",
         "kind": 6,
         "isExtraImport": true,
         "importPath": "io",
         "description": "io",
         "detail": "io",
+        "documentation": {}
+    },
+    {
+        "label": "Image",
+        "importPath": "PIL",
+        "description": "PIL",
+        "isExtraImport": true,
+        "detail": "PIL",
         "documentation": {}
     },
     {
@@ -282,6 +298,51 @@
         "description": "adb.ScrcpyCapture",
         "peekOfCode": "class ScrCpyCapture():\n    def start(self, executable_file, cwd='./'):\n        return subprocess.Popen(\n            executable_file,\n            stdin=subprocess.PIPE,\n            stdout=subprocess.PIPE,\n            stderr=subprocess.PIPE,\n            cwd=cwd\n        )\n    def read(self, process):",
         "detail": "adb.ScrcpyCapture",
+        "documentation": {}
+    },
+    {
+        "label": "AdbKey",
+        "kind": 6,
+        "importPath": "dist.adb.adbKey",
+        "description": "dist.adb.adbKey",
+        "peekOfCode": "class AdbKey(Enum):\n    KEYCODE_UNKNOWN = \"KEYCODE_UNKNOWN\"\n    KEYCODE_MENU = \"KEYCODE_MENU\"\n    KEYCODE_SOFT_RIGHT = \"KEYCODE_SOFT_RIGHT\"\n    KEYCODE_HOME = \"KEYCODE_HOME\"\n    KEYCODE_BACK = \"KEYCODE_BACK\"\n    KEYCODE_CALL = \"KEYCODE_CALL\"\n    KEYCODE_ENDCALL = \"KEYCODE_ENDCALL\"\n    KEYCODE_0 = \"KEYCODE_0\"\n    KEYCODE_1 = \"KEYCODE_1\"",
+        "detail": "dist.adb.adbKey",
+        "documentation": {}
+    },
+    {
+        "label": "send_adb_key",
+        "kind": 2,
+        "importPath": "dist.adb.adbKey",
+        "description": "dist.adb.adbKey",
+        "peekOfCode": "def send_adb_key(keymap):\n    cmd = \"adb  shell input keyevent \" + keymap\n    try:\n        subprocess.run(cmd, shell=True)\n    except subprocess.CalledProcessError:\n        print('connect error')",
+        "detail": "dist.adb.adbKey",
+        "documentation": {}
+    },
+    {
+        "label": "get_screen",
+        "kind": 2,
+        "importPath": "dist.adb.capture",
+        "description": "dist.adb.capture",
+        "peekOfCode": "def get_screen(filename, toJpg=True):\n    print(filename)\n    cmd = \"adb  shell screencap -p\"\n    try:\n        process = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE)\n        binary_screenshot = process.stdout.read()\n        binary_screenshot = binary_screenshot.replace(b'\\r\\n', b'\\n')\n        if toJpg:\n            filename = filename.replace('.png', '.jpg')\n            img = Image.open(io.BytesIO(binary_screenshot))",
+        "detail": "dist.adb.capture",
+        "documentation": {}
+    },
+    {
+        "label": "imageCrop",
+        "kind": 2,
+        "importPath": "dist.adb.capture",
+        "description": "dist.adb.capture",
+        "peekOfCode": "def imageCrop(filename, x, y, width, height, toJpg=False):\n    img = Image.open(filename)\n    area = (x, y, width, height)\n    croppedImg = img.crop(area)\n    img.close()\n    try:\n        if toJpg:\n            os.remove(filename)\n            filename = filename.replace('.png', '.jpg')\n            croppedImg = croppedImg.convert('RGB')",
+        "detail": "dist.adb.capture",
+        "documentation": {}
+    },
+    {
+        "label": "ScrCpyCapture",
+        "kind": 6,
+        "importPath": "dist.adb.ScrcpyCapture",
+        "description": "dist.adb.ScrcpyCapture",
+        "peekOfCode": "class ScrCpyCapture():\n    def start(self, executable_file, cwd='./'):\n        return subprocess.Popen(\n            executable_file,\n            stdin=subprocess.PIPE,\n            stdout=subprocess.PIPE,\n            stderr=subprocess.PIPE,\n            cwd=cwd\n        )\n    def read(self, process):",
+        "detail": "dist.adb.ScrcpyCapture",
         "documentation": {}
     },
     {
