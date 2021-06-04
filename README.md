@@ -38,6 +38,13 @@ pyenv local 3.6.8
 python --version
 ```
 
+* 윈도우에서 자꾸 스토어가 뜬다면 여기를 확인 해 보자.
+  * https://stackoverflow.com/questions/58754860/cmd-opens-window-store-when-i-type-python
+
+> %USERPROFILE%\AppData\Local\Microsoft\WindowsApps
+
+위 폴더에서 `Python.exe`, `Python3.exe` 파일을 지워 줘야 한다.
+
 ### 파이썬 가상 환경 만들어 주기
 
 ```cmd
