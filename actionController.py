@@ -38,7 +38,7 @@ class ActionController(QObject):
         if action == "capture":
             scrcpy = ScrCpyCapture()
             path = os.path.join(self.core.newFilePath())
-            scrcpy.capture(os.path.join(path))
+            scrcpy.capture(path)
             # get_screen('./capture/a.png')
             time.sleep(0.1)
             self.addImage.emit(path)

@@ -59,6 +59,19 @@ class MainWindow(QMainWindow, mainUi.Ui_MainWindow):
 
         # self.setLsFiles("C:\\workspace\\adb-capture")
         self.loadCaptureFiles()
+        self.setButtonState(False)
+    
+    def setButtonState(self, enabled):
+        bWorking = enabled 
+        self.btnPathSelect.setEnabled(not bWorking)
+        self.btnConfigInsert.setEnabled(not bWorking)
+        self.btnConfigAdd.setEnabled(not bWorking)
+        self.btnConfigRemove.setEnabled(not bWorking)
+        self.btnCapture.setEnabled(not bWorking)
+        self.btnStart.setEnabled(not bWorking)
+
+        self.btnStop.setEnabled(bWorking)
+
 
     def setLsFiles(self, path):
         self.model = QFileSystemModel()
@@ -164,18 +177,21 @@ class MainWindow(QMainWindow, mainUi.Ui_MainWindow):
         self.loadCaptureFiles()
 
     def clickStop(self):
+        self.setButtonState(True)
         print("stop Clicked", self.core.capturePath)
         self.actionController.stop()
         self.actionController.stopAction()
         self.macroTable.setDisabled(False)
 
     def clickStart(self):
+        self.setButtonState(False)
         print("start Clicked")
         self.macroTable.setDisabled(True)
         self.selectRow = 0
         self.macroTable.selectRow(self.selectRow)
         self.actionController.start()
         self.actionController.setAction("capture", "take")
+
         # get_screen('test.png')
 
     def getRowValues(self):
