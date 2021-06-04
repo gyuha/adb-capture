@@ -33,8 +33,8 @@ pyenv-win으로 설치하면 조금 쉽다.
 ### 3.6.8 파이썬을 설치
 
 ```
-pyenv install 3.6.8
-pyenv local 3.6.8
+pyenv install 3.8.10
+pyenv local 3.8.10
 python --version
 ```
 
