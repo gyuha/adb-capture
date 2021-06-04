@@ -11,6 +11,7 @@ from PyQt5 import QtCore, uic
 from PyQt5.QtCore import QDir, Qt, pyqtSlot
 from PyQt5.QtGui import QIcon, QImage, QPixmap
 from PyQt5.QtWidgets import *
+from pathlib import Path
 
 import mainUi
 from actionController import ActionController
@@ -219,6 +220,7 @@ class MainWindow(QMainWindow, mainUi.Ui_MainWindow):
 
     def loadCaptureFiles(self):
         self.lsFiles.clear()
+        Path(self.core.capturePath).mkdir(parents=True, exist_ok=True)
         files = os.listdir(self.core.capturePath)
         for file in files:
             path = os.path.join(self.core.capturePath, file)
