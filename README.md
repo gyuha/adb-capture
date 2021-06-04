@@ -61,12 +61,10 @@ python --version
 ```
 
 # ui to py
-> pyuic5.exe -x .\mainUi.ui -o .\mainUi.py
+```
+pyuic5.exe -x .\mainUi.ui -o .\mainUi.py
+```
 
-# pyinstaller
-```
-pyinstaller --onefile --windowed main.pyw
-```
 
 #### Linux
 
@@ -88,8 +86,9 @@ auto-pi-to-exe
 ```
 
 Or
-```cmd
-pyinstaller -y -F "mangashowme.py"
+
+```
+pyinstaller --onefile --windowed main.pyw
 ```
 
 # Update all package

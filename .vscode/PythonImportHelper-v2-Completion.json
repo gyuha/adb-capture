@@ -1,5 +1,53 @@
 [
     {
+        "label": "QtCore",
+        "importPath": "PyQt5",
+        "description": "PyQt5",
+        "isExtraImport": true,
+        "detail": "PyQt5",
+        "documentation": {}
+    },
+    {
+        "label": "QtGui",
+        "importPath": "PyQt5",
+        "description": "PyQt5",
+        "isExtraImport": true,
+        "detail": "PyQt5",
+        "documentation": {}
+    },
+    {
+        "label": "QtWidgets",
+        "importPath": "PyQt5",
+        "description": "PyQt5",
+        "isExtraImport": true,
+        "detail": "PyQt5",
+        "documentation": {}
+    },
+    {
+        "label": "QtCore",
+        "importPath": "PyQt5",
+        "description": "PyQt5",
+        "isExtraImport": true,
+        "detail": "PyQt5",
+        "documentation": {}
+    },
+    {
+        "label": "QtGui",
+        "importPath": "PyQt5",
+        "description": "PyQt5",
+        "isExtraImport": true,
+        "detail": "PyQt5",
+        "documentation": {}
+    },
+    {
+        "label": "QtWidgets",
+        "importPath": "PyQt5",
+        "description": "PyQt5",
+        "isExtraImport": true,
+        "detail": "PyQt5",
+        "documentation": {}
+    },
+    {
         "label": "subprocess",
         "kind": 6,
         "isExtraImport": true,
@@ -200,30 +248,6 @@
         "documentation": {}
     },
     {
-        "label": "QtCore",
-        "importPath": "PyQt5",
-        "description": "PyQt5",
-        "isExtraImport": true,
-        "detail": "PyQt5",
-        "documentation": {}
-    },
-    {
-        "label": "QtGui",
-        "importPath": "PyQt5",
-        "description": "PyQt5",
-        "isExtraImport": true,
-        "detail": "PyQt5",
-        "documentation": {}
-    },
-    {
-        "label": "QtWidgets",
-        "importPath": "PyQt5",
-        "description": "PyQt5",
-        "isExtraImport": true,
-        "detail": "PyQt5",
-        "documentation": {}
-    },
-    {
         "label": "imagesPathToPdf",
         "importPath": "libs.imagesPathToPdf",
         "description": "libs.imagesPathToPdf",
@@ -237,6 +261,15 @@
         "description": "libs.imagesPathToPdf",
         "isExtraImport": true,
         "detail": "libs.imagesPathToPdf",
+        "documentation": {}
+    },
+    {
+        "label": "Ui_MainWindow",
+        "kind": 6,
+        "importPath": ".qt_for_python.uic.mainUi",
+        "description": ".qt_for_python.uic.mainUi",
+        "peekOfCode": "class Ui_MainWindow(object):\n    def setupUi(self, MainWindow):\n        MainWindow.setObjectName(\"MainWindow\")\n        MainWindow.resize(1328, 817)\n        self.centralwidget = QtWidgets.QWidget(MainWindow)\n        self.centralwidget.setObjectName(\"centralwidget\")\n        self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.centralwidget)\n        self.horizontalLayout_2.setObjectName(\"horizontalLayout_2\")\n        self.verticalLayout = QtWidgets.QVBoxLayout()\n        self.verticalLayout.setObjectName(\"verticalLayout\")",
+        "detail": ".qt_for_python.uic.mainUi",
         "documentation": {}
     },
     {
