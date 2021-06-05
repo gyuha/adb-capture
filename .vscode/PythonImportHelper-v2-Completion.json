@@ -48,6 +48,22 @@
         "documentation": {}
     },
     {
+        "label": "QtCore",
+        "importPath": "PyQt5",
+        "description": "PyQt5",
+        "isExtraImport": true,
+        "detail": "PyQt5",
+        "documentation": {}
+    },
+    {
+        "label": "QtWidgets",
+        "importPath": "PyQt5",
+        "description": "PyQt5",
+        "isExtraImport": true,
+        "detail": "PyQt5",
+        "documentation": {}
+    },
+    {
         "label": "subprocess",
         "kind": 6,
         "isExtraImport": true,
@@ -540,10 +556,10 @@
     {
         "label": "ImageToPdfWorker",
         "kind": 6,
-        "importPath": "imageToPdfController",
-        "description": "imageToPdfController",
-        "peekOfCode": "class ImageToPdfWorker(QThread):\n    pdfSaveDone = pyqtSignal()\n    pdfSaveProgress = pyqtSignal(int)\n    def __init__(self):\n        super().__init__()\n        self.running = False\n    def run(self, imagesPath, pdfFileName):\n        self.running = True\n        pdf = FPDF()\n        # imagelist is the list with all image filenames",
-        "detail": "imageToPdfController",
+        "importPath": "imageToPdfWorker",
+        "description": "imageToPdfWorker",
+        "peekOfCode": "class ImageToPdfWorker(QThread):\n    pdfSaveDone = pyqtSignal()\n    updateProgress = pyqtSignal(int)\n    def __init__(self, parent=None):\n        super().__init__(parent)\n        self.running = False\n        self.imagePath = None\n        self.pdfFileName = None\n    def setFiles(self, imagePath, pdfFileName):\n        self.imagePath = imagePath",
+        "detail": "imageToPdfWorker",
         "documentation": {}
     },
     {
@@ -562,6 +578,24 @@
         "description": "pdfSave",
         "peekOfCode": "def usage():\n    print(\"python \" + sys.argv[0] + \" [fileName]\")\nif __name__ == '__main__':\n    if (len(sys.argv) <= 1):\n        usage()\n        exit(1)\n    imagesPathToPdf('./capture/', sys.argv[1])",
         "detail": "pdfSave",
+        "documentation": {}
+    },
+    {
+        "label": "Worker",
+        "kind": 6,
+        "importPath": "progress",
+        "description": "progress",
+        "peekOfCode": "class Worker(QtCore.QObject):\n    loaded = QtCore.pyqtSignal(int, str)\n    finished = QtCore.pyqtSignal()\n    def __init__(self, files):\n        super().__init__()\n        self._files = files\n    def run(self):\n        self._stop = False\n        for count, file in enumerate(self._files, 1):\n            QtCore.QThread.sleep(2)  # process file...",
+        "detail": "progress",
+        "documentation": {}
+    },
+    {
+        "label": "Window",
+        "kind": 6,
+        "importPath": "progress",
+        "description": "progress",
+        "peekOfCode": "class Window(QtWidgets.QWidget):\n    def __init__(self):\n        super(Window, self).__init__()\n        self.button = QtWidgets.QPushButton('Choose Files')\n        self.button.clicked.connect(self.showOpenDialog)\n        layout = QtWidgets.QVBoxLayout(self)\n        layout.addWidget(self.button)\n        self.thread = QtCore.QThread()\n    def showOpenDialog(self):\n        files, filters = QtWidgets.QFileDialog.getOpenFileNames(",
+        "detail": "progress",
         "documentation": {}
     }
 ]

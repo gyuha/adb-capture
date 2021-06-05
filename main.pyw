@@ -1,10 +1,11 @@
 import glob
-from imageToPdfController import ImageToPdfWorker
+from imageToPdfWorker import ImageToPdfWorker
 import io
 import os
 import re
 import sys
 import time
+from pathlib import Path
 
 from PIL import Image
 from PIL.ImageQt import ImageQt
@@ -12,7 +13,6 @@ from PyQt5 import QtCore, uic
 from PyQt5.QtCore import QDir, Qt, pyqtSlot
 from PyQt5.QtGui import QIcon, QImage, QPixmap
 from PyQt5.QtWidgets import *
-from pathlib import Path
 
 import mainUi
 from actionController import ActionController
@@ -66,6 +66,9 @@ class MainWindow(QMainWindow, mainUi.Ui_MainWindow):
         # self.setLsFiles("C:\\workspace\\adb-capture")
         self.loadCaptureFiles()
         self.setButtonState(False)
+
+        self.savePdfWorker = ImageToPdfWorker()
+        self.savePdfWorker.updateProgress.connect(self.updateProgress)
 
     def setButtonState(self, enabled):
         bWorking = enabled
@@ -194,10 +197,12 @@ class MainWindow(QMainWindow, mainUi.Ui_MainWindow):
         self.macroTable.setDisabled(True)
         self.selectRow = 0
         self.macroTable.selectRow(self.selectRow)
-        self.actionController.start()
-        self.actionController.setAction("capture", "take")
 
-        # get_screen('test.png')
+        self.actionController.start()
+        self.selectRow = 0
+        self.macroTable.selectRow(self.selectRow)
+        action, value = self.getRowValues()
+        self.actionController.setAction(action, value)
 
     def getRowValues(self):
         row = self.selectRow
@@ -227,7 +232,6 @@ class MainWindow(QMainWindow, mainUi.Ui_MainWindow):
         file = self.core.newFilePath()
         get_screen(file)
         self.addCaptureFile(file)
-        self.lsFiles.scrollToBottom()
         self.lastLsFileSelect()
 
     def pil2pixmap(self, image):
@@ -261,13 +265,13 @@ class MainWindow(QMainWindow, mainUi.Ui_MainWindow):
         self.leCurrentCount.setText(str(num))
 
     def addCaptureFile(self, path):
-        # or not (path.endswith(".jpg") and path.endswith(".png")):
-        if os.path.isdir(path) or not (path.endswith(".jpg")):
-            return
-        picture = Image.open(path)
-        picture.thumbnail((80, 120), Image.ANTIALIAS)
-
         try:
+            # or not (path.endswith(".jpg") and path.endswith(".png")):
+            if os.path.isdir(path) or not (path.endswith(".jpg")):
+                return
+            picture = Image.open(path)
+            picture.thumbnail((80, 120), Image.ANTIALIAS)
+
             icon = QIcon(self.pil2pixmap(picture))
             item = QListWidgetItem(os.path.basename(path), self.lsFiles)
             item.setStatusTip(path)
@@ -288,17 +292,34 @@ class MainWindow(QMainWindow, mainUi.Ui_MainWindow):
                                 Qt.SmoothTransformation)
         self.lbPreview.setPixmap(pix)
 
+    @pyqtSlot(int)
+    def updateProgress(self, count):
+        if not self.progressDialog.wasCanceled():
+            self.progressDialog.setValue(count)
+        else:
+            QMessageBox.warning(self, "Save file", "abort...")
+
     def clickToPdf(self):
         fileName = QFileDialog.getSaveFileName(
             self, 'Save file', '', '.pdf')
         if not fileName:
             return
         filePath = fileName[0]
+        if not filePath:
+            return
         if not fileName[0].endswith(".pdf"):
             filePath = filePath + ".pdf"
-        if fileName[0]:
-            worker = ImageToPdfWorker()
-            worker.run(self.core.capturePath, filePath)
+
+        self.progressDialog = QProgressDialog(
+            "Save to pdf", "Cancel", 0, 100, self)
+
+        self.savePdfWorker.setFiles(self.core.capturePath, filePath)
+        self.savePdfWorker.start()
+
+        self.progressDialog.setWindowModality(Qt.WindowModal)
+        self.progressDialog.forceShow()
+
+        # if fileName[0]:
 
     def clickDeleteSelectFile(self):
         try:
