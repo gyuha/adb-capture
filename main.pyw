@@ -1,4 +1,5 @@
 import glob
+from imageToPdfController import ImageToPdfWorker
 import io
 import os
 import re
@@ -33,8 +34,11 @@ class MainWindow(QMainWindow, mainUi.Ui_MainWindow):
         self.setMacroTable()
 
         self.actionOpen.triggered.connect(self.clickConfigLoad)
+        self.actionOpen.setShortcut('Ctrl+O')
         self.actionSave.triggered.connect(self.clickConfigSave)
+        self.actionSave.setShortcut('Ctrl+S')
         self.actionSaveAs.triggered.connect(self.clickConfigSaveAs)
+        self.actionSaveAs.setShortcut('Ctrl+Shift+S')
 
         self.lbConfigFilePath.setText(self.core.configPath)
         self.btnConfigInsert.clicked.connect(self.clickConfigInsert)
@@ -45,6 +49,8 @@ class MainWindow(QMainWindow, mainUi.Ui_MainWindow):
         self.btnCapture.clicked.connect(self.clickCapture)
         self.btnStart.clicked.connect(self.clickStart)
         self.btnStop.clicked.connect(self.clickStop)
+
+        self.btnToPdf.clicked.connect(self.clickToPdf)
 
         self.btnDeleteFile.clicked.connect(self.clickDeleteSelectFile)
         self.btnDeleteAllFiles.clicked.connect(self.clickDeleteAllFiles)
@@ -281,6 +287,18 @@ class MainWindow(QMainWindow, mainUi.Ui_MainWindow):
         pix = pix.scaledToWidth(self.lbPreview.width(),
                                 Qt.SmoothTransformation)
         self.lbPreview.setPixmap(pix)
+
+    def clickToPdf(self):
+        fileName = QFileDialog.getSaveFileName(
+            self, 'Save file', '', '.pdf')
+        if not fileName:
+            return
+        filePath = fileName[0]
+        if not fileName[0].endswith(".pdf"):
+            filePath = filePath + ".pdf"
+        if fileName[0]:
+            worker = ImageToPdfWorker()
+            worker.run(self.core.capturePath, filePath)
 
     def clickDeleteSelectFile(self):
         try:

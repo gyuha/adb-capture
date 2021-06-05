@@ -126,7 +126,23 @@
         "documentation": {}
     },
     {
+        "label": "FPDF",
+        "importPath": "fpdf",
+        "description": "fpdf",
+        "isExtraImport": true,
+        "detail": "fpdf",
+        "documentation": {}
+    },
+    {
         "label": "QObject",
+        "importPath": "PyQt5.QtCore",
+        "description": "PyQt5.QtCore",
+        "isExtraImport": true,
+        "detail": "PyQt5.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "*",
         "importPath": "PyQt5.QtCore",
         "description": "PyQt5.QtCore",
         "isExtraImport": true,
@@ -156,6 +172,22 @@
         "description": "adb.ScrcpyCapture",
         "isExtraImport": true,
         "detail": "adb.ScrcpyCapture",
+        "documentation": {}
+    },
+    {
+        "label": "ScrCpyCapture",
+        "importPath": "adb.ScrcpyCapture",
+        "description": "adb.ScrcpyCapture",
+        "isExtraImport": true,
+        "detail": "adb.ScrcpyCapture",
+        "documentation": {}
+    },
+    {
+        "label": "mainCore",
+        "importPath": "core",
+        "description": "core",
+        "isExtraImport": true,
+        "detail": "core",
         "documentation": {}
     },
     {
@@ -220,6 +252,14 @@
         "description": "adb.adbKey",
         "isExtraImport": true,
         "detail": "adb.adbKey",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "PyQt5.QtWidgets",
+        "description": "PyQt5.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt5.QtWidgets",
         "documentation": {}
     },
     {
@@ -495,6 +535,15 @@
         "description": "core",
         "peekOfCode": "macroActions = [\"capture\", \"delay\", \"crop\", \"key\"]\nclass mainCore(QtSingleton):\n  def __init__(self):\n    super().__init__()\n    self.capturePath = './capture'\n    self.macro = []\n    self.configPath = './default.json'\n    self.loadMacro()\n    self.fileNumber = 0\n  def loadMacro(self):",
         "detail": "core",
+        "documentation": {}
+    },
+    {
+        "label": "ImageToPdfWorker",
+        "kind": 6,
+        "importPath": "imageToPdfController",
+        "description": "imageToPdfController",
+        "peekOfCode": "class ImageToPdfWorker(QThread):\n    pdfSaveDone = pyqtSignal()\n    pdfSaveProgress = pyqtSignal(int)\n    def __init__(self):\n        super().__init__()\n        self.running = False\n    def run(self, imagesPath, pdfFileName):\n        self.running = True\n        pdf = FPDF()\n        # imagelist is the list with all image filenames",
+        "detail": "imageToPdfController",
         "documentation": {}
     },
     {
