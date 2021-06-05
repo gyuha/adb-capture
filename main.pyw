@@ -191,7 +191,15 @@ class MainWindow(QMainWindow, mainUi.Ui_MainWindow):
         self.actionController.stopAction()
         self.macroTable.setDisabled(False)
 
+    def checkStop(self):
+        flag = int(self.leTotalCount.text()) < self.core.fileNumber
+        if flag:
+            self.clickStop()
+        return flag
+
     def clickStart(self):
+        if (self.checkStop()):
+            return
         self.setButtonState(True)
         print("start Clicked")
         self.macroTable.setDisabled(True)
@@ -211,6 +219,8 @@ class MainWindow(QMainWindow, mainUi.Ui_MainWindow):
         return (action, value)
 
     def nextAction(self):
+        if (self.checkStop()):
+            return
         self.selectRow = self.selectRow + 1
         if self.selectRow >= self.macroTable.rowCount():
             self.selectRow = 0
@@ -220,10 +230,12 @@ class MainWindow(QMainWindow, mainUi.Ui_MainWindow):
 
     @pyqtSlot()
     def actionDone(self):
+        if (self.checkStop()):
+            return
         self.nextAction()
         self.leCurrentCount.setText(str(self.core.fileNumber))
 
-    @pyqtSlot(str)
+    @ pyqtSlot(str)
     def addImage(self, path):
         self.addCaptureFile(path)
         self.lastLsFileSelect()
@@ -292,7 +304,7 @@ class MainWindow(QMainWindow, mainUi.Ui_MainWindow):
                                 Qt.SmoothTransformation)
         self.lbPreview.setPixmap(pix)
 
-    @pyqtSlot(int)
+    @ pyqtSlot(int)
     def updateProgress(self, count):
         if not self.progressDialog.wasCanceled():
             self.progressDialog.setValue(count)
