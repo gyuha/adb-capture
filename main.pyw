@@ -325,6 +325,7 @@ class MainWindow(QMainWindow, mainUi.Ui_MainWindow):
 
         self.progressDialog = QProgressDialog(
             "Save to pdf", "Cancel", 0, 100, self)
+        self.progressDialog.setWindowTitle('Save to pdf')
 
         self.savePdfWorker.setFiles(self.core.capturePath, filePath)
         self.savePdfWorker.start()
