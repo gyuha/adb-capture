@@ -558,7 +558,7 @@
         "kind": 6,
         "importPath": "imageToPdfWorker",
         "description": "imageToPdfWorker",
-        "peekOfCode": "class ImageToPdfWorker(QThread):\n    pdfSaveDone = pyqtSignal()\n    updateProgress = pyqtSignal(int)\n    def __init__(self, parent=None):\n        super().__init__(parent)\n        self.running = False\n        self.imagePath = None\n        self.pdfFileName = None\n    def setFiles(self, imagePath, pdfFileName):\n        self.imagePath = imagePath",
+        "peekOfCode": "class ImageToPdfWorker(QThread):\n    pdfSaveDone = pyqtSignal()\n    updateProgress = pyqtSignal(int, str)\n    def __init__(self, parent=None):\n        super().__init__(parent)\n        self.running = False\n        self.imagePath = None\n        self.pdfFileName = None\n    def setFiles(self, imagePath, pdfFileName):\n        self.imagePath = imagePath",
         "detail": "imageToPdfWorker",
         "documentation": {}
     },

@@ -304,9 +304,10 @@ class MainWindow(QMainWindow, mainUi.Ui_MainWindow):
                                 Qt.SmoothTransformation)
         self.lbPreview.setPixmap(pix)
 
-    @ pyqtSlot(int)
-    def updateProgress(self, count):
+    @ pyqtSlot(int, str)
+    def updateProgress(self, count, label):
         if not self.progressDialog.wasCanceled():
+            self.progressDialog.setLabelText(label)
             self.progressDialog.setValue(count)
         else:
             QMessageBox.warning(self, "Save file", "abort...")
