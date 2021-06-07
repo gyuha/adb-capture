@@ -12,6 +12,7 @@ class ScrCpyCapture():
             stdin=subprocess.PIPE,
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
+            shell=True,
             cwd=cwd
         )
 
