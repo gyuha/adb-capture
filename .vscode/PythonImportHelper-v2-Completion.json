@@ -32,6 +32,22 @@
         "documentation": {}
     },
     {
+        "label": "uic",
+        "importPath": "PyQt5",
+        "description": "PyQt5",
+        "isExtraImport": true,
+        "detail": "PyQt5",
+        "documentation": {}
+    },
+    {
+        "label": "QtCore",
+        "importPath": "PyQt5",
+        "description": "PyQt5",
+        "isExtraImport": true,
+        "detail": "PyQt5",
+        "documentation": {}
+    },
+    {
         "label": "QtGui",
         "importPath": "PyQt5",
         "description": "PyQt5",
@@ -116,6 +132,22 @@
         "documentation": {}
     },
     {
+        "label": "Image",
+        "importPath": "PIL",
+        "description": "PIL",
+        "isExtraImport": true,
+        "detail": "PIL",
+        "documentation": {}
+    },
+    {
+        "label": "Image",
+        "importPath": "PIL",
+        "description": "PIL",
+        "isExtraImport": true,
+        "detail": "PIL",
+        "documentation": {}
+    },
+    {
         "label": "time",
         "kind": 6,
         "isExtraImport": true,
@@ -174,6 +206,30 @@
         "documentation": {}
     },
     {
+        "label": "QDir",
+        "importPath": "PyQt5.QtCore",
+        "description": "PyQt5.QtCore",
+        "isExtraImport": true,
+        "detail": "PyQt5.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "Qt",
+        "importPath": "PyQt5.QtCore",
+        "description": "PyQt5.QtCore",
+        "isExtraImport": true,
+        "detail": "PyQt5.QtCore",
+        "documentation": {}
+    },
+    {
+        "label": "pyqtSlot",
+        "importPath": "PyQt5.QtCore",
+        "description": "PyQt5.QtCore",
+        "isExtraImport": true,
+        "detail": "PyQt5.QtCore",
+        "documentation": {}
+    },
+    {
         "label": "site",
         "kind": 6,
         "isExtraImport": true,
@@ -215,6 +271,22 @@
         "documentation": {}
     },
     {
+        "label": "macroActions",
+        "importPath": "core",
+        "description": "core",
+        "isExtraImport": true,
+        "detail": "core",
+        "documentation": {}
+    },
+    {
+        "label": "mainCore",
+        "importPath": "core",
+        "description": "core",
+        "isExtraImport": true,
+        "detail": "core",
+        "documentation": {}
+    },
+    {
         "label": "get_screen",
         "importPath": "adb.capture",
         "description": "adb.capture",
@@ -224,6 +296,14 @@
     },
     {
         "label": "imageCrop",
+        "importPath": "adb.capture",
+        "description": "adb.capture",
+        "isExtraImport": true,
+        "detail": "adb.capture",
+        "documentation": {}
+    },
+    {
+        "label": "get_screen",
         "importPath": "adb.capture",
         "description": "adb.capture",
         "isExtraImport": true,
@@ -287,6 +367,14 @@
         "documentation": {}
     },
     {
+        "label": "*",
+        "importPath": "PyQt5.QtWidgets",
+        "description": "PyQt5.QtWidgets",
+        "isExtraImport": true,
+        "detail": "PyQt5.QtWidgets",
+        "documentation": {}
+    },
+    {
         "label": "QtSingleton",
         "importPath": "libs.qtSingleton",
         "description": "libs.qtSingleton",
@@ -301,6 +389,97 @@
         "importPath": "json",
         "description": "json",
         "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "glob",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "glob",
+        "description": "glob",
+        "detail": "glob",
+        "documentation": {}
+    },
+    {
+        "label": "ImageToPdfWorker",
+        "importPath": "imageToPdfWorker",
+        "description": "imageToPdfWorker",
+        "isExtraImport": true,
+        "detail": "imageToPdfWorker",
+        "documentation": {}
+    },
+    {
+        "label": "re",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "re",
+        "description": "re",
+        "detail": "re",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "ImageQt",
+        "importPath": "PIL.ImageQt",
+        "description": "PIL.ImageQt",
+        "isExtraImport": true,
+        "detail": "PIL.ImageQt",
+        "documentation": {}
+    },
+    {
+        "label": "QIcon",
+        "importPath": "PyQt5.QtGui",
+        "description": "PyQt5.QtGui",
+        "isExtraImport": true,
+        "detail": "PyQt5.QtGui",
+        "documentation": {}
+    },
+    {
+        "label": "QImage",
+        "importPath": "PyQt5.QtGui",
+        "description": "PyQt5.QtGui",
+        "isExtraImport": true,
+        "detail": "PyQt5.QtGui",
+        "documentation": {}
+    },
+    {
+        "label": "QPixmap",
+        "importPath": "PyQt5.QtGui",
+        "description": "PyQt5.QtGui",
+        "isExtraImport": true,
+        "detail": "PyQt5.QtGui",
+        "documentation": {}
+    },
+    {
+        "label": "mainUi",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "mainUi",
+        "description": "mainUi",
+        "detail": "mainUi",
+        "documentation": {}
+    },
+    {
+        "label": "ActionController",
+        "importPath": "actionController",
+        "description": "actionController",
+        "isExtraImport": true,
+        "detail": "actionController",
+        "documentation": {}
+    },
+    {
+        "label": "removePathFiles",
+        "importPath": "libs.fileUtil",
+        "description": "libs.fileUtil",
+        "isExtraImport": true,
+        "detail": "libs.fileUtil",
         "documentation": {}
     },
     {
@@ -342,7 +521,7 @@
         "kind": 2,
         "importPath": "adb.adbKey",
         "description": "adb.adbKey",
-        "peekOfCode": "def send_adb_key(keymap):\n    cmd = \"adb  shell input keyevent \" + keymap\n    try:\n        subprocess.run(cmd, shell=True)\n    except subprocess.CalledProcessError:\n        print('connect error')",
+        "peekOfCode": "def send_adb_key(keymap):\n    adbPath = os.path.realpath('./bin/scrcpy/adb.exe')\n    cmd = [adbPath, \"shell\", \"input\", \"keyevent\", keymap]\n    try:\n        subprocess.run(cmd, shell=True)\n    except subprocess.CalledProcessError:\n        print('connect error')",
         "detail": "adb.adbKey",
         "documentation": {}
     },
@@ -360,7 +539,7 @@
         "kind": 2,
         "importPath": "adb.capture",
         "description": "adb.capture",
-        "peekOfCode": "def imageCrop(filename, x, y, width, height, toJpg=False):\n    img = Image.open(filename)\n    area = (x, y, width, height)\n    croppedImg = img.crop(area)\n    img.close()\n    try:\n        if toJpg:\n            os.remove(filename)\n            filename = filename.replace('.png', '.jpg')\n            croppedImg = croppedImg.convert('RGB')",
+        "peekOfCode": "def imageCrop(filename, x, y, width, height, toJpg=False):\n    try:\n        img = Image.open(filename)\n        area = (x, y, width, height)\n        croppedImg = img.crop(area)\n        img.close()\n        if toJpg:\n            os.remove(filename)\n            filename = filename.replace('.png', '.jpg')\n            croppedImg = croppedImg.convert('RGB')",
         "detail": "adb.capture",
         "documentation": {}
     },
@@ -560,6 +739,15 @@
         "description": "imageToPdfWorker",
         "peekOfCode": "class ImageToPdfWorker(QThread):\n    pdfSaveDone = pyqtSignal()\n    updateProgress = pyqtSignal(int, str)\n    def __init__(self, parent=None):\n        super().__init__(parent)\n        self.running = False\n        self.imagePath = None\n        self.pdfFileName = None\n    def setFiles(self, imagePath, pdfFileName):\n        self.imagePath = imagePath",
         "detail": "imageToPdfWorker",
+        "documentation": {}
+    },
+    {
+        "label": "MainWindow",
+        "kind": 6,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "class MainWindow(QMainWindow, mainUi.Ui_MainWindow):\n    def __init__(self, parent=None):\n        super(MainWindow, self).__init__(parent)\n        self.setupUi(self)\n        self.core = mainCore()\n        self.edtCapturePath.setText(self.core.capturePath)\n        self.setMacroTable()\n        self.actionOpen.triggered.connect(self.clickConfigLoad)\n        self.actionOpen.setShortcut('Ctrl+O')\n        self.actionSave.triggered.connect(self.clickConfigSave)",
+        "detail": "main",
         "documentation": {}
     },
     {

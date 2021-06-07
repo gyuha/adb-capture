@@ -12,7 +12,6 @@ class ScrCpyCapture():
             stdin=subprocess.PIPE,
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
-            shell=True,
             cwd=cwd
         )
 
@@ -33,11 +32,11 @@ class ScrCpyCapture():
                 # os.kill(proc.pid, signal.CTRL_C_EVENT)
                 # os.kill(0, signal.CTRL_C_EVENT)
                 proc.send_signal(signal.CTRL_C_EVENT)
+                proc.terminate()
+                proc.wait(timeout=2)
             except AttributeError as e:
                 print(e)
             # Immediately throws KeyboardInterrupt from the simulated CTRL-C
-            proc.terminate()
-            proc.wait(timeout=2)
         except KeyboardInterrupt:
             # Ignore the simulated CTRL-C
             pass
@@ -48,15 +47,19 @@ class ScrCpyCapture():
         process.wait(timeout=1)
 
     def capture(self, output):
-        p = self.start(['scrcpy.exe', '-b16M', '-Nr', os.path.realpath('tmp.mkv')],
-                       os.path.realpath('./bin/scrcpy'))
-        time.sleep(1)
-        print(output)
-        self.send_keyboard_interrupt(p)
-        print(output, "> capture")
-        p = self.start([os.path.realpath('./bin/ffmpeg/ffmpeg.exe'),
-                       '-i', os.path.realpath('tmp.mkv'), '-vframes', '1', os.path.realpath(output)])
-        print(output, "> end")
+        try:
+            p = self.start(['scrcpy.exe', '-b16M', '-Nr', os.path.realpath('tmp.mkv')],
+                           os.path.realpath('./bin/scrcpy'))
+            time.sleep(1)
+            self.send_keyboard_interrupt(p)
+            time.sleep(0.1)
+            print(output, "> capture")
+            p = self.start([os.path.realpath('./bin/ffmpeg/ffmpeg.exe'),
+                            '-i', os.path.realpath('tmp.mkv'), '-vframes', '1', os.path.realpath(output)])
+            time.sleep(0.1)
+            print(output, "> end")
+        except Exception as e:
+            print(e)
         # os.remove(os.path.realpath('tmp.mkv'))
 
 

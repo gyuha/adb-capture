@@ -29,32 +29,41 @@ class ActionController(QObject):
             timeout = int(value)
         else:
             timeout = 100
-        QTimer.singleShot(timeout, lambda: self.runAction(action, value))
+        try:
+            QTimer.singleShot(timeout, lambda: self.runAction(action, value))
+        except Exception as e:
+            print(e)
 
     def runAction(self, action, value):
         if self.running == False:
             return
 
         if action == "capture":
-            scrcpy = ScrCpyCapture()
-            path = os.path.join(self.core.newFilePath())
-            scrcpy.capture(path)
-            # get_screen('./capture/a.png')
-            time.sleep(0.3)
-            self.addImage.emit(path)
+            try:
+                scrcpy = ScrCpyCapture()
+                path = os.path.join(self.core.newFilePath())
+                scrcpy.capture(path)
+                # get_screen('./capture/a.png')
+                time.sleep(0.3)
+                self.addImage.emit(path)
+            except Exception as e:
+                print(e)
         elif action == "crop":
             print(value)
-            size = value.split(',')
-            if len(size) < 4:
-                print(size)
-                return
-            imageCrop(
-                os.path.join(self.core.currentFilePath()),
-                int(size[0]),
-                int(size[1]),
-                int(size[2]),
-                int(size[3])
-            )
+            try:
+                size = value.split(',')
+                if len(size) < 4:
+                    print(size)
+                    return
+                imageCrop(
+                    os.path.join(self.core.currentFilePath()),
+                    int(size[0]),
+                    int(size[1]),
+                    int(size[2]),
+                    int(size[3])
+                )
+            except Exception as e:
+                print(e)
         elif action == "key":
             send_adb_key(value)
 

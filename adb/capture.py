@@ -26,11 +26,12 @@ def get_screen(filename, toJpg=True):
 
 
 def imageCrop(filename, x, y, width, height, toJpg=False):
-    img = Image.open(filename)
-    area = (x, y, width, height)
-    croppedImg = img.crop(area)
-    img.close()
     try:
+        img = Image.open(filename)
+        area = (x, y, width, height)
+        croppedImg = img.crop(area)
+        img.close()
+
         if toJpg:
             os.remove(filename)
             filename = filename.replace('.png', '.jpg')

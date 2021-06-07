@@ -49,6 +49,8 @@ class ImageToPdfWorker(QThread):
         # 이미지 비율 가져 오기
         im = Image.open(imageList[0])
         rate = im.width / im.height
+        width = 210
+        height = 297
 
         for image in imageList:
             if not self.running:
@@ -57,8 +59,15 @@ class ImageToPdfWorker(QThread):
             self.updateProgress.emit(
                 35 + int((count / (imageCount * 3)) * 100), 'image convert')
             pdf.add_page()
-            pdf.image(image, x=int((210*(3/4) - (210*rate)) / 2),
-                      y=0, w=(297*rate), h=297)
+
+            x = ((width*(3/4) - (width*rate)) / 2)
+            x = x if x > 0 else 0
+
+            w = (height*rate)
+            w = width if w > width else w
+
+            pdf.image(image, x=x,
+                      y=0, w=w, h=height)
         self.updateProgress.emit(80, 'save to pdf')
         pdf.output(self.pdfFileName, "F")
         self.updateProgress.emit(100, 'complete')
