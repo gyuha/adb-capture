@@ -40,7 +40,7 @@ class ActionController(QObject):
             path = os.path.join(self.core.newFilePath())
             scrcpy.capture(path)
             # get_screen('./capture/a.png')
-            time.sleep(0.1)
+            time.sleep(0.3)
             self.addImage.emit(path)
         elif action == "crop":
             print(value)

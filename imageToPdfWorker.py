@@ -1,6 +1,7 @@
 import os
 import sys
 import time
+from PIL import Image
 
 from fpdf import FPDF
 from PyQt5.QtCore import *
@@ -44,6 +45,11 @@ class ImageToPdfWorker(QThread):
 
         imageCount = len(imageList)
         count = 0
+
+        # 이미지 비율 가져 오기
+        im = Image.open(imageList[0])
+        rate = im.width / im.height
+
         for image in imageList:
             if not self.running:
                 return
@@ -51,7 +57,8 @@ class ImageToPdfWorker(QThread):
             self.updateProgress.emit(
                 35 + int((count / (imageCount * 3)) * 100), 'image convert')
             pdf.add_page()
-            pdf.image(image, x=0, y=0, w=210, h=297)
+            pdf.image(image, x=int((210*(3/4) - (210*rate)) / 2),
+                      y=0, w=(297*rate), h=297)
         self.updateProgress.emit(80, 'save to pdf')
         pdf.output(self.pdfFileName, "F")
         self.updateProgress.emit(100, 'complete')
