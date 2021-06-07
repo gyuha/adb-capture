@@ -48,15 +48,10 @@ python --version
 ### 파이썬 가상 환경 만들어 주기
 
 ```cmd
+> python -m pip install --upgrade pip
 > python -m pip install virtualenv
 > python -m virtualenv venv
 > .\venv\Scripts\activate
-> pip install -r requirements.txt
-```
-
-```cmd
-> python -m venv venv
-> .\venv\Scripts\activate.bat
 > pip install -r requirements.txt
 ```
 
