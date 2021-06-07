@@ -75,16 +75,22 @@ $ pip install -r requirements.txt
 
 
 ## Make Install file..
-빌드 할 때는 python이 3.6 버전이여야 한다.
-```cmd
-auto-pi-to-exe
+
+### .spec 파일 만들기
+```
+pyi-makespec [--onefile] main.py
 ```
 
-Or
+```
+pyinstaller main.spec
+```
 
+또는
+### 직접 빌드하기
 ```
-pyinstaller --onefile --windowed main.pyw
+pyinstaller --onefile -F --log-level DEBUG --debug main.py
 ```
+
 
 # Update all package
 ```

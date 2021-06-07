@@ -48,7 +48,7 @@ class ScrCpyCapture():
         process.wait(timeout=1)
 
     def capture(self, output):
-        p = self.start(['scrcpy', '-b16M', '-Nr', os.path.realpath('tmp.mkv')],
+        p = self.start(['scrcpy.exe', '-b16M', '-Nr', os.path.realpath('tmp.mkv')],
                        os.path.realpath('./bin/scrcpy'))
         time.sleep(1)
         print(output)
